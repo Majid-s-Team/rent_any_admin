@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { JSX, useEffect, useReducer } from "react";
 import { UserContext, userReducer } from "../../store/user";
 import { UserActionTypes } from "../../types/contexts";
 import { getStorageData } from "../../helper";

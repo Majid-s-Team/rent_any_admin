@@ -6,4 +6,4 @@ export * from "./subscribers";
 export * from "./subscription";
 export * from "./boostRequests";
 export * from "./queries";
-export * from "./Faqs";
+export * from "./faqs";

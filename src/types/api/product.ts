@@ -1,0 +1,27 @@
+export type Product = {
+  variants?: any[];
+  availability?: string;
+  category?: string;
+  colors?: string[];
+  description?: string;
+  discount?: number;
+  five_star_reviews?: number;
+  four_star_reviews?: number;
+  image_url?: string[] | undefined;
+  name?: string;
+  one_star_reviews?: number;
+  price?: number | string | undefined;
+  publish_date?: string;
+  quantity?: number;
+  rating?: number;
+  reviews?: number;
+  sizes?: string[];
+  slug?: string;
+  status?: boolean;
+  sub_category?: string;
+  three_star_reviews?: number;
+  two_star_reviews?: number;
+  user?: string;
+  _id?: string;
+  sku?: string;
+};

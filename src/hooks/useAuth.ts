@@ -4,10 +4,9 @@ import {
   loginUser,
   request,
   resetPassowrd,
-  signupUser,
   verifyCode,
 } from "../repositories";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { setStorageData } from "../helper";
 import { ResponseError } from "../types";
 import { notification } from "antd";
@@ -15,8 +14,6 @@ import { useUser } from "./useUser";
 import { UserActionTypes } from "../types/contexts";
 export const useAuth = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const previousPath = location.state?.prevPath;
   const { email } = useParams();
   const [loading, setLoading] = useState(false);
   const [user, dispatch] = useUser();
@@ -46,25 +43,10 @@ export const useAuth = () => {
           type: UserActionTypes.POST,
           payload: res?.data as any,
         });
-        setStorageData("access_token", headers["access-token"]);
+        setStorageData("access_token", headers["access_token"]);
         setStorageData("user", res?.data);
         navigate("/dashboard");
         setLoading(false);
-      })
-      .onFailure(handleFailure)
-      .call();
-  };
-
-  const signup = (values: any) => {
-    setLoading(true);
-    request(signupUser.url, signupUser.method)
-      .setBody({ ...values })
-      .onSuccess((res) => {
-        console.log(res);
-        setLoading(false);
-        navigate("/verification-method", {
-          state: { email: values["email"], prevPath: "signup" },
-        });
       })
       .onFailure(handleFailure)
       .call();
@@ -90,29 +72,28 @@ export const useAuth = () => {
       .setBody({
         ...value,
         mode: "email",
-        identifier: atob(email as string),
+        email: atob(email as string),
       })
-      .onSuccess((res) => {
-        if (previousPath === "signup") {
-          navigate("/login");
-        } else {
-          navigate("/reset-password/" + email, {
-            // @ts-ignore
-            state: { resetToken: res?.data?.reset_password_token },
-          });
-        }
+      .onSuccess((res, headers) => {
+        console.log(res);
+        navigate("/reset-password/" + headers["reset_password_token"]);
         setLoading(false);
       })
       .onFailure(handleFailure)
       .call();
   };
 
-  const resetpassowrd = (value: { password: string }) => {
+  const resetpassowrd = (
+    value: { password: string },
+    reset_password_token: string
+  ) => {
     setLoading(true);
     request(resetPassowrd.url, resetPassowrd.method)
+      .setHeaders({
+        reset_password_token,
+      })
       .setBody({
         ...value,
-        reset_password_token: location.state?.resetToken,
       })
       .onSuccess(() => {
         navigate("/login");
@@ -134,7 +115,6 @@ export const useAuth = () => {
     dispatch,
     loading,
     login,
-    signup,
     forgotpassword,
     otp,
     resetpassowrd,

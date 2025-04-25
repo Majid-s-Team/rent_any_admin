@@ -1,18 +1,19 @@
-import { Avatar } from "antd";
+import { Avatar, Spin } from "antd";
 import { useState, useEffect } from "react";
-import { request, uploadfile } from "../../repositories";
-// interface UploadData {
-//   url: string;
-//   filename: string;
-// }
+import { uploadfile } from "../../repositories";
+import { useRequest } from "../../hooks/useRequest";
 
 interface ProfileimgProps {
-  onChange: (data: string) => void;
+  onChange: (data: FormData) => void | undefined;
   initialImgSrc: string | undefined;
 }
 
 const ImagePicker = ({ onChange, initialImgSrc }: ProfileimgProps) => {
   const [imgSrc, setImgSrc] = useState<string>("");
+
+  const { execute, loading } = useRequest(uploadfile.url, uploadfile.method, {
+    type: "delay",
+  });
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -20,27 +21,28 @@ const ImagePicker = ({ onChange, initialImgSrc }: ProfileimgProps) => {
     if (file) {
       const img = new Image();
       const objectURL = URL.createObjectURL(file);
-      setImgSrc(objectURL);
+      // setImgSrc(objectURL);
       img.src = objectURL;
+
+      // const formData = new FormData();
+      // formData.append("file", file);
+      // formData.append("mode", "single");
+      // onChange(formData);
     }
 
-    request(uploadfile.url, uploadfile.method)
-      .setBody(
-        {
-          file: event.target.files?.[0],
-          mode: "single",
-        },
-        "formData"
-      )
-      .onSuccess((res) => {
-        console.log(res, "res");
+    execute({
+      body: {
+        file: event?.target?.files?.[0],
+        mode: "single",
+      },
+      body_type: "formData",
+      cbSuccess(res) {
         // @ts-ignore
-        onChange(res?.data?.url);
-      })
-      .onFailure((err) => {
-        console.log(err);
-      })
-      .call();
+        onChange(res.data?.attachment);
+        // @ts-ignore
+        setImgSrc(res.data?.attachment);
+      },
+    });
   };
 
   useEffect(() => {
@@ -52,24 +54,34 @@ const ImagePicker = ({ onChange, initialImgSrc }: ProfileimgProps) => {
   return (
     <div>
       {/* <p className="text-[#2A2F31] text-[16px] red-regular py-6">Upload Logo</p> */}
-      {imgSrc ? (
-        <Avatar
-          shape="square"
-          size={110}
-          src={imgSrc}
-          onClick={() => setImgSrc("")}
-        />
-      ) : (
-        <div className="pointer mx-auto lg:mx-0 w-[90px]">
-          <label>
-            <img
-              className="mx-auto pb-4 "
-              src="/images/img-picker.png"
-              alt="Upload icon"
-            />
-            <input className="!hidden" type="file" onChange={onFileChange} />
-          </label>
+      {loading ? (
+        <div
+          style={{ width: "110px" }}
+          className=" h-[170px] flex justify-center items-center"
+        >
+          <Spin size="default" />
         </div>
+      ) : (
+        <>
+          {imgSrc ? (
+            <Avatar size={110} src={imgSrc} onClick={() => setImgSrc("")} />
+          ) : (
+            <div className="pointer mx-auto lg:mx-0 w-[90px]">
+              <label>
+                <img
+                  className="mx-auto pb-4 "
+                  src="/images/img-picker.png"
+                  alt="Upload icon"
+                />
+                <input
+                  className="!hidden"
+                  type="file"
+                  onChange={onFileChange}
+                />
+              </label>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

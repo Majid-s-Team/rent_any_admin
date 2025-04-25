@@ -4,9 +4,16 @@ import TableData from "../component/shared/Table";
 import { dashboardcolumns, dashboardData } from "../config";
 import { DatePicker } from "antd";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
-import { RouteTypes } from "../types";
 
 const Dashboard = () => {
+  // const { data, loading } = useRequest(
+  //   advertisements.url,
+  //   advertisements.method,
+  //   {
+  //     type: "mount",
+  //   }
+  // );
+
   return (
     <HomeLayout>
       <p className="text-[#171717] text-[32px] red-bold">Dashboard</p>
@@ -15,7 +22,6 @@ const Dashboard = () => {
         title="Recent Orders"
         columns={dashboardcolumns}
         data={dashboardData}
-        // loading={loading}
         input={
           <>
             <DatePicker width={200} />
@@ -26,4 +32,4 @@ const Dashboard = () => {
   );
 };
 
-export default withAuthGuard(Dashboard, RouteTypes.PUBLIC);
+export default withAuthGuard(Dashboard);

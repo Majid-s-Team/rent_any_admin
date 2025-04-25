@@ -4,7 +4,11 @@ import AuthLayout from "../../component/shared/AuthLayout";
 import { useAuth } from "../../hooks/useAuth";
 import { withAuthGuard } from "../../component/higherOrder/withAuth";
 import { RouteTypes } from "../../types";
+import { useParams } from "react-router-dom";
 function Resetpassword() {
+  const { reset_password_token } = useParams();
+
+  // alert(reset_password_token);
   const [form] = Form.useForm();
   const { resetpassowrd, loading } = useAuth();
 
@@ -14,7 +18,7 @@ function Resetpassword() {
         layout="vertical"
         form={form}
         onFinish={(values: { password: string; confirm_password: string }) => {
-          resetpassowrd(values);
+          resetpassowrd(values, reset_password_token as string);
         }}
       >
         <Form.Item

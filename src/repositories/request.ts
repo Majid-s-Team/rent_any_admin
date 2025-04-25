@@ -145,13 +145,11 @@ export class RequestSingleton<T = unknown> {
 
   private addAuthHeader(): void {
     const token = getStorageData("access_token");
-
-    // console.log(getStorageData(TOKEN_STORAGE_KEY));
     if (token) {
       this.config.headers = {
         ...this.config.headers,
-        // Authorization: `Bearer ${getStorageData("access_token")}`,
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${getStorageData("access_token")}`,
+        // reset_password_token: getStorageData("reset_password_token"),
       };
     }
   }

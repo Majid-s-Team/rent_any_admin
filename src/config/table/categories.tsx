@@ -1,30 +1,50 @@
 import { Avatar } from "antd";
+import { Dispatch } from "react";
 
-export const categoriesColumns = [
+type Props = {
+  setOpen: Dispatch<React.SetStateAction<boolean>>;
+  setSelectedRecord: Dispatch<React.SetStateAction<any>>;
+  handleDelete: (id: string) => void;
+};
+
+export const categoriesColumns = ({
+  setOpen,
+  setSelectedRecord,
+  handleDelete,
+}: Props) => [
   {
     title: "Category ID",
-    dataIndex: "category_id",
+    dataIndex: "_id",
   },
   {
     title: "Category Icon",
-    dataIndex: "category_icon",
+    dataIndex: "image_url",
     render: (text: string) => <Avatar size={50} src={text} alt="" />,
   },
   {
     title: "Category Name",
-    dataIndex: "category_name",
+    dataIndex: "name",
   },
-  {
-    title: "Subcategories",
-    dataIndex: "subcategories",
-  },
+  // {
+  //   title: "Subcategories",
+  //   dataIndex: "subcategories",
+  // },
   {
     title: "Actions",
     dataIndex: "Actions",
-    render: () => (
+    render: (_: string, record: any) => (
       <div className="flex items-center gap-5">
-        <img className="w-[30px] cursor-pointer" src="/icons/edit.png" alt="" />
         <img
+          onClick={() => {
+            setOpen(true);
+            setSelectedRecord(record);
+          }}
+          className="w-[30px] cursor-pointer"
+          src="/icons/edit.png"
+          alt=""
+        />
+        <img
+          onClick={() => handleDelete(record._id)}
           className="w-[30px] cursor-pointer"
           src="/icons/delete.png"
           alt=""
@@ -34,29 +54,29 @@ export const categoriesColumns = [
   },
 ];
 
-export const categories = [
+export const categoriesData = [
   {
-    category_id: 1,
-    category_icon: "/icons/category1.png",
-    category_name: "Electronics",
+    _id: 1,
+    image_url: "/icons/category1.png",
+    name: "Electronics",
     subcategories: 4,
   },
   {
-    category_id: 2,
-    category_icon: "/icons/category2.png",
-    category_name: "Fashion",
+    _id: 2,
+    image_url: "/icons/category2.png",
+    name: "Fashion",
     subcategories: 4,
   },
   {
-    category_id: 3,
-    category_icon: "/icons/category3.png",
-    category_name: "Home & Kitchen",
+    _id: 3,
+    image_url: "/icons/category3.png",
+    name: "Home & Kitchen",
     subcategories: 4,
   },
   {
-    category_id: 4,
-    category_icon: "/icons/category4.png",
-    category_name: "Sports & Fitness",
+    _id: 4,
+    image_url: "/icons/category4.png",
+    name: "Sports & Fitness",
     subcategories: 4,
   },
 ];

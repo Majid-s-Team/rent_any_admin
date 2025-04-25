@@ -1,13 +1,32 @@
 import { Form, Modal } from "antd";
 import BaseInput from "../shared/BaseInput";
 import AuthButton from "./AuthButton";
+import { useRequest } from "../../hooks/useRequest";
+import { faqsPost } from "../../repositories";
+import { Dispatch, SetStateAction } from "react";
 
 type BankEditModalProps = {
   isModalOpen: boolean;
   handleCancel: () => void;
+  setData?: Dispatch<SetStateAction<any | undefined>>;
 };
 
-function FaqsModal({ isModalOpen, handleCancel }: BankEditModalProps) {
+function FaqsModal({ isModalOpen, handleCancel, setData }: BankEditModalProps) {
+  const { execute } = useRequest(faqsPost.url, faqsPost.method, {
+    type: "delay",
+  });
+  const onFinish = (e: any) => {
+    execute({
+      body: { ...e },
+      cbSuccess(data) {
+        setData && setData((prevData: any) => [...prevData, data]);
+        handleCancel();
+      },
+    });
+  };
+
+  console.log(onFinish);
+
   return (
     <Modal
       open={isModalOpen}

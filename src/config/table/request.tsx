@@ -7,14 +7,25 @@ export const requestColumns = () => {
     {
       title: "Business Name",
       dataIndex: "business_name",
+      // render: (_: string, record: any) => (
+      //   <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.name}</p>
+      // ),
     },
     {
       title: "Business Email",
       dataIndex: "email",
+      // render: (_: string, record: any) => (
+      //   <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.email}</p>
+      // ),
     },
     {
       title: "Contact Number",
       dataIndex: "mobile_no",
+      // render: (_: string, record: any) => (
+      //   <p className="text-[#4D4D4D] text-[14px]">
+      //     {record?.vendor?.mobile_no}
+      //   </p>
+      // ),
     },
     {
       title: "Owner Name",
@@ -23,10 +34,10 @@ export const requestColumns = () => {
     {
       title: "Profile",
       dataIndex: "profile",
-      render: () => (
+      render: (_: string, record: any) => (
         <Button
           onClick={() =>
-            navigate("/users/details/" + "12121", {
+            navigate("/users/details/" + record?.vendor?._id, {
               state: { path: "Business" },
             })
           }

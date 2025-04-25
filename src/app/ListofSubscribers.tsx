@@ -1,3 +1,4 @@
+import { withAuthGuard } from "../component/higherOrder/withAuth";
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
 import { subscribersColumns, subscribersData } from "../config";
@@ -16,4 +17,4 @@ function ListofSubscribers() {
   );
 }
 
-export default ListofSubscribers;
+export default withAuthGuard(ListofSubscribers);

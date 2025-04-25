@@ -1,8 +1,8 @@
 export default {
   // local
-  // baseUrl: "http://192.168.110.35:3333/",
+  // baseUrl: "http://192.168.30.51:3343/",
   // production
-  baseUrl: "https://ahsan-server-production.up.railway.app/",
+  baseUrl: "https://rentanyserver-production.up.railway.app/",
   imageUrl: function (url: string): string {
     return this.baseUrl + url;
   },

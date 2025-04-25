@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
 import { Select } from "antd";
 import { userColumns, userData } from "../config";
+import { useRequest } from "../hooks/useRequest";
+import { user } from "../repositories";
+import { withAuthGuard } from "../component/higherOrder/withAuth";
 
 const tabs = ["Users Management", "Business Users Management"];
 
 function User() {
   const [activeTab, setActiveTab] = useState(1);
+  const { data, execute } = useRequest(user.url, user.method, {});
+
+  console.log(data, "data");
+
+  useEffect(() => {
+    execute({
+      params: { role: activeTab === 1 ? "user" : "business" },
+      type: "mount",
+    });
+  }, [activeTab]);
+
   return (
     <HomeLayout>
       <div className="flex lg:flex-row flex-col lg:items-center lg:gap-20 gap-4">
@@ -35,6 +49,9 @@ function User() {
         title={tabs[activeTab - 1]}
         columns={userColumns(tabs[activeTab - 1])}
         data={userData}
+        // loading={loading}
+        // onPaginationChange={onPaginationChange}
+        // pagination={pagination}
         input={
           <>
             <Select defaultValue="All" style={{ width: 150 }} />
@@ -45,4 +62,4 @@ function User() {
   );
 }
 
-export default User;
+export default withAuthGuard(User);

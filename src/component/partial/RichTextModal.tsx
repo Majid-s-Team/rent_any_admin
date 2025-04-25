@@ -1,23 +1,17 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, ModalProps } from "antd";
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-// interface CashOutprops {
-//   isModalOpen: boolean;
-//   handleCancel: () => void;
-//   title: string;
-// }
-
-function RichText({ isModalOpen, handleCancel, title }: any) {
+function RichText({ open, onCancel, title }: ModalProps) {
   const [value, setValue] = useState("");
 
   console.log(value);
 
   return (
     <Modal
-      open={isModalOpen}
-      onCancel={handleCancel}
+      open={open}
+      onCancel={onCancel}
       footer={null}
       title={title}
       // className="!h-[420px]"
@@ -34,7 +28,7 @@ function RichText({ isModalOpen, handleCancel, title }: any) {
       />
       <div className="flex lg:flex-row flex-col gap-4 mt-20">
         <Button
-          onClick={() => handleCancel()}
+          onClick={onCancel}
           className="lg:w-[275px] w-full h-[50px] border border-[#4A7ABC] bg-transparent rounded-[10px] text-[14px] text-[#4A7ABC] red-medium"
         >
           Cancel

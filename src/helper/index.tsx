@@ -40,6 +40,19 @@ export const getStorageData = (key: string) => {
   return null;
 };
 
+export const encryptData = (data: string): string => {
+  try {
+    let key = CryptoJS.enc.Utf8.parse(Server.crypto.AES_SECRET);
+    let iv = CryptoJS.enc.Utf8.parse(Server.crypto.AES_IV);
+    let ciphertext = CryptoJS.AES.encrypt(data, key, { iv: iv }).toString();
+
+    return ciphertext;
+  } catch (error) {
+    console.error("Error during encryption:", error);
+    return ""; // Return an empty string or handle the error as needed
+  }
+};
+
 /**
  * Stores a value in local storage under the specified key.
  * The value is encrypted using AES encryption with the secret provided in server constants.

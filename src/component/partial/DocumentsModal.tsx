@@ -1,11 +1,13 @@
 import { Modal } from "antd";
+import { UserData } from "../../types";
 
 type Props = {
   isModalOpen: boolean;
   handleCancel: () => void;
+  data: UserData | null;
 };
 
-function DocumentsModal({ isModalOpen, handleCancel }: Props) {
+function DocumentsModal({ isModalOpen, handleCancel, data }: Props) {
   return (
     <Modal
       open={isModalOpen}
@@ -18,11 +20,19 @@ function DocumentsModal({ isModalOpen, handleCancel }: Props) {
       <div className="grid gap-4">
         <div>
           <p className="text-[#171717] text-[14px] red-semibold">Front</p>
-          <img className="w-[319px]" src="/images/card-front.png" alt="" />
+          <img
+            className="w-[319px] h-[200px]"
+            src={data?.id_front || "/images/card-front.png"}
+            alt=""
+          />
         </div>
         <div>
           <p className="text-[#171717] text-[14px] red-semibold">Back</p>
-          <img className="w-[319px]" src="/images/card-back.png" alt="" />
+          <img
+            className="w-[319px] h-[200px]"
+            src={data?.id_back || "/images/card-back.png"}
+            alt=""
+          />
         </div>
       </div>
     </Modal>

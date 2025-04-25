@@ -31,8 +31,8 @@ const StaticContent = () => {
       {isModalOpen1 && (
         <RichTextModal
           title="Terms & Conditions"
-          handleCancel={() => setIsModalOpen1(false)}
-          isModalOpen={isModalOpen1}
+          onCancel={() => setIsModalOpen1(false)}
+          open={isModalOpen1}
         />
       )}
     </HomeLayout>

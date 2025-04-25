@@ -12,6 +12,7 @@ type Props = {
 };
 
 function ChangePasswordModal({ isModalOpen, handleCancel }: Props) {
+  const [form] = Form.useForm();
   const { execute } = useRequest(Change.url, Change.method, {
     type: "delay",
   });
@@ -25,6 +26,7 @@ function ChangePasswordModal({ isModalOpen, handleCancel }: Props) {
       centered
     >
       <Form
+        form={form}
         layout="vertical"
         onFinish={(e) =>
           execute({
@@ -47,6 +49,39 @@ function ChangePasswordModal({ isModalOpen, handleCancel }: Props) {
             </Form.Item>
           );
         })}
+        <Form.Item
+          label={"New password"}
+          name={"password"}
+          rules={[
+            { required: true, message: "Please enter your password!" },
+            {
+              pattern:
+                /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              message:
+                "Password must include uppercase, lowercase, number, and special character!",
+            },
+          ]}
+        >
+          <BaseInput type="password" />
+        </Form.Item>
+        <Form.Item
+          label={"Confirm password"}
+          name={"confirm_password"}
+          rules={[
+            { required: true, message: "Please confirm your password!" },
+            {
+              validator: (_, value) => {
+                const password = form.getFieldValue("password");
+                if (!value || password === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error("Passwords do not match!"));
+              },
+            },
+          ]}
+        >
+          <BaseInput type="password" />
+        </Form.Item>
         <AuthButton htmlType="submit" text={"Change Password"} />
       </Form>
     </Modal>

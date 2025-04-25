@@ -32,11 +32,9 @@ function ProfileDropdown() {
   const DropdownMenu = (
     <Menu className="w-[300px] !py-10 !pb-5 bg-[#F5F9FF]  text-center">
       <Menu.Item className="flex justify-center">
-        <Avatar size={64} src="/images/user.png" className="" />
-        <p className="text-[#171717] text-[18px] red-bold ">Admin</p>
-        <p className="text-[#6A778B] text-[18px] red-regular">
-          Admin@gmail.com
-        </p>
+        <Avatar size={64} src={user?.image_url} className="" />
+        <p className="text-[#171717] text-[18px] red-bold ">{user?.name}</p>
+        <p className="text-[#6A778B] text-[18px] red-regular">{user?.email}</p>
       </Menu.Item>
 
       <Menu.Item>
@@ -105,7 +103,7 @@ function ProfileDropdown() {
         className="cursor-pointer"
       >
         <div className="flex gap-4 items-center">
-          <Avatar size={50} src="/images/user.png" />
+          <Avatar size={50} src={user?.image_url || "/images/user.png"} />
           {!isMobile && (
             <div className="cursior-pointer">
               <p

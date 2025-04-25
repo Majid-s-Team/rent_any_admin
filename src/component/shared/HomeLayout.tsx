@@ -3,7 +3,7 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";
-import { Layout, Drawer, Button, Input } from "antd";
+import { Layout, Drawer, Button, Input, Spin } from "antd";
 import { Header, Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { Sidebar } from "./Sidebar";
@@ -12,9 +12,10 @@ import ProfileDropdown from "./ProfileDropdown";
 
 type Props = {
   children?: React.ReactNode;
+  loading?: boolean;
 };
 
-function HomeLayout({ children }: Props) {
+function HomeLayout({ children, loading }: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
   // Media query for responsive layout: max-width 768px (mobile)
@@ -96,7 +97,13 @@ function HomeLayout({ children }: Props) {
           }}
           className={`p-6 h-[calc(100vh-64px)] overflow-auto hide-scrollbar`}
         >
-          {children}
+          {loading ? (
+            <div className="flex justify-center items-center h-screen">
+              <Spin size="large" />
+            </div>
+          ) : (
+            children
+          )}
         </Content>
       </Layout>
     </Layout>

@@ -1,7 +1,11 @@
 export const faqsColumns = [
   {
-    title: "View FAQs",
-    dataIndex: "faqs",
+    title: "Question",
+    dataIndex: "question",
+  },
+  {
+    title: "Answer",
+    dataIndex: "answer",
   },
   {
     title: "Actions",
@@ -21,18 +25,23 @@ export const faqsColumns = [
 
 export const faqs = [
   {
-    faqs: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
+    question: "Lorem Ipsum is simply dummy text ",
+    answer:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
   },
   {
-    faqs: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
+    question: "Lorem Ipsum is simply dummy text ",
+    answer:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
   },
   {
-    faqs: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
+    question: "Lorem Ipsum is simply dummy text ",
+    answer:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
   },
   {
-    faqs: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
-  },
-  {
-    faqs: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
+    question: "Lorem Ipsum is simply dummy text ",
+    answer:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text  ",
   },
 ];

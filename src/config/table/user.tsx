@@ -4,20 +4,18 @@ import { useNavigate } from "react-router-dom";
 export const userColumns = (path: string) => {
   const navigate = useNavigate();
 
-  console.log(path, "path");
-
   return [
     {
       title: "Full Name",
-      dataIndex: "Full Name",
+      dataIndex: "name",
     },
     {
       title: "Email Address",
-      dataIndex: "Email Address",
+      dataIndex: "email",
     },
     {
       title: "Phone Number",
-      dataIndex: "Phone Number",
+      dataIndex: "mobile_no",
     },
     {
       title: "Total Ads",
@@ -26,12 +24,14 @@ export const userColumns = (path: string) => {
     {
       title: "Actions",
       dataIndex: "Actions",
-      render: () => (
+      render: (_: string, record: any) => (
         <div className="flex items-center gap-5">
           <Switch />
           <img
             onClick={() =>
-              navigate("/users/details/" + "12121", { state: { path: path } })
+              navigate("/users/details/" + record?._id, {
+                state: { path: path },
+              })
             }
             className="w-[20px] cursor-pointer"
             src="/icons/eye.png"
@@ -45,37 +45,37 @@ export const userColumns = (path: string) => {
 
 export const userData = [
   {
-    "Full Name": "John Doe",
-    "Email Address": "john.doe@example.com",
-    "Phone Number": "123-456-7890",
+    name: "John Doe",
+    email: "john.doe@example.com",
+    mobile_no: "123-456-7890",
     "Total Ads": 10,
     Actions: "View/Edit/Delete",
   },
   {
-    "Full Name": "Jane Smith",
-    "Email Address": "jane.smith@example.com",
-    "Phone Number": "987-654-3210",
+    name: "Jane Smith",
+    email: "jane.smith@example.com",
+    mobile_no: "987-654-3210",
     "Total Ads": 5,
     Actions: "View/Edit/Delete",
   },
   {
-    "Full Name": "Bob Johnson",
-    "Email Address": "bob.johnson@example.com",
-    "Phone Number": "555-123-4567",
+    name: "Bob Johnson",
+    email: "bob.johnson@example.com",
+    mobile_no: "555-123-4567",
     "Total Ads": 8,
     Actions: "View/Edit/Delete",
   },
   {
-    "Full Name": "Alice Brown",
-    "Email Address": "alice.brown@example.com",
-    "Phone Number": "901-234-5678",
+    name: "Alice Brown",
+    email: "alice.brown@example.com",
+    mobile_no: "901-234-5678",
     "Total Ads": 12,
     Actions: "View/Edit/Delete",
   },
   {
-    "Full Name": "Mike Davis",
-    "Email Address": "mike.davis@example.com",
-    "Phone Number": "111-222-3333",
+    name: "Mike Davis",
+    email: "mike.davis@example.com",
+    mobile_no: "111-222-3333",
     "Total Ads": 15,
     Actions: "View/Edit/Delete",
   },

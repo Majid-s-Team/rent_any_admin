@@ -1,7 +1,7 @@
 import React, { JSX, useEffect, useReducer } from "react";
 import { UserContext, userReducer } from "../../store/user";
 import { UserActionTypes } from "../../types/contexts";
-import { getStorageData } from "../../helper";
+import { getStorageData, setStorageData } from "../../helper";
 
 /**
  * Provides the user state to the application.
@@ -18,14 +18,18 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   const [state, dispatch] = useReducer(userReducer, null);
 
   useEffect(() => {
-    if (!state) {
-      let storageData = getStorageData("user");
-      if (storageData) {
-        dispatch({
-          type: UserActionTypes.POST,
-          payload: storageData,
-        });
-      }
+    const storedUser = getStorageData("user");
+    if (storedUser) {
+      dispatch({
+        type: UserActionTypes.POST,
+        payload: storedUser,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (state) {
+      setStorageData("user", state);
     }
   }, [state]);
 

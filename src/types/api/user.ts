@@ -3,7 +3,7 @@ interface Location {
   coordinates: number[];
 }
 
-export type UserData = {
+export type UserType = {
   current_location: Location;
   rating: number;
   reviews: number;

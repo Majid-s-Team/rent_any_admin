@@ -6,7 +6,7 @@ import DocumentsModal from "../component/partial/DocumentsModal";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useRequest } from "../hooks/useRequest";
 import { user } from "../repositories";
-import { UserData } from "../types";
+import { UserType } from "../types";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 
 function ProfileDetails() {
@@ -18,7 +18,7 @@ function ProfileDetails() {
   const pathname = state?.path || "";
   const isBusiness = pathname.includes("Business");
 
-  const { data, loading } = useRequest<UserData>(user.url, user.method, {
+  const { data, loading } = useRequest<UserType>(user.url, user.method, {
     type: "mount",
     routeParams: id,
   });

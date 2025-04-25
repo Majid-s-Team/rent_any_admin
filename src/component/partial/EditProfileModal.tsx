@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { UserActionTypes } from "../../types/contexts";
 import { useUser } from "../../hooks/useUser";
+import { UserType } from "../../types";
 
 type Props = {
   isModalOpen: boolean;
@@ -30,7 +31,7 @@ function EditProfileModal({ isModalOpen, handleCancel }: Props) {
         handleCancel();
         dispatch({
           type: UserActionTypes.PUT,
-          payload: data?.data,
+          payload: data?.data as Partial<UserType>,
         });
       },
     });

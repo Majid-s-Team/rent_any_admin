@@ -1,10 +1,10 @@
 import { Modal } from "antd";
-import { UserData } from "../../types";
+import { UserType } from "../../types";
 
 type Props = {
   isModalOpen: boolean;
   handleCancel: () => void;
-  data: UserData | null;
+  data: UserType | null;
 };
 
 function DocumentsModal({ isModalOpen, handleCancel, data }: Props) {

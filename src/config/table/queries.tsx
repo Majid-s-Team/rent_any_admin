@@ -1,28 +1,44 @@
 export const queriesColumns = [
   {
-    title: "User Name",
-    dataIndex: "user_name",
+    title: "Name",
+    dataIndex: "full_name",
   },
   {
     title: "Email",
     dataIndex: "email",
   },
   {
-    title: "Status",
-    dataIndex: "status",
-    render: (text: string) => (
-      <p className="text-white text-[14px] py-1 w-[100px] bg-[#00B69B] text-center rounded-[40px]">
-        {text}
-      </p>
-    ),
+    title: "Type",
+    dataIndex: "type",
   },
   {
-    title: "Action",
-    dataIndex: "action",
-    render: () => (
-      <img className="w-[20px] cursor-pointer" src="/icons/dots.png" alt="" />
-    ),
+    title: "Booking",
+    dataIndex: "booking",
   },
+  {
+    title: "User Name",
+    dataIndex: "user",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+  },
+  // {
+  //   title: "Status",
+  //   dataIndex: "status",
+  //   render: (text: string) => (
+  //     <p className="text-white text-[14px] py-1 w-[100px] bg-[#00B69B] text-center rounded-[40px]">
+  //       {text}
+  //     </p>
+  //   ),
+  // },
+  // {
+  //   title: "Action",
+  //   dataIndex: "action",
+  //   render: () => (
+  //     <img className="w-[20px] cursor-pointer" src="/icons/dots.png" alt="" />
+  //   ),
+  // },
 ];
 
 export const queriesData = [

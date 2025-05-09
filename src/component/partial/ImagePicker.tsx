@@ -4,7 +4,7 @@ import { uploadfile } from "../../repositories";
 import { useRequest } from "../../hooks/useRequest";
 
 interface ProfileimgProps {
-  onChange: (data: FormData) => void | undefined;
+  onChange: (data: string) => void | undefined;
   initialImgSrc: string | undefined;
 }
 

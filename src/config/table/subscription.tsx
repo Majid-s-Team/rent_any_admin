@@ -1,13 +1,17 @@
-import { Avatar, Switch } from "antd";
+import { Avatar, Popconfirm } from "antd";
 
-export const subscriptionColumns = [
+export const subscriptionColumns = ({
+  setOpen,
+  setSelectedRecord,
+  handleDelete,
+}: any) => [
   {
     title: "Package Icon",
     dataIndex: "image_url",
     render: (text: string) => <Avatar size={50} src={text} alt="" />,
   },
   {
-    title: "Number of Ads",
+    title: "Package Name",
     dataIndex: "name",
   },
   {
@@ -21,15 +25,28 @@ export const subscriptionColumns = [
   {
     title: "Actions",
     dataIndex: "Actions",
-    render: () => (
+    render: (_: string, record: any) => (
       <div className="flex items-center gap-5">
-        <img className="w-[30px] cursor-pointer" src="/icons/edit.png" alt="" />
         <img
+          onClick={() => {
+            setOpen(true);
+            setSelectedRecord(record);
+          }}
           className="w-[30px] cursor-pointer"
-          src="/icons/delete.png"
+          src="/icons/edit.png"
           alt=""
         />
-        <Switch />
+        <Popconfirm
+          title="Are you sure to delete this package?"
+          onConfirm={() => handleDelete(record?._id as string)}
+        >
+          <img
+            className="w-[30px] cursor-pointer"
+            src="/icons/delete.png"
+            alt=""
+          />
+        </Popconfirm>
+        {/* <Switch /> */}
       </div>
     ),
   },

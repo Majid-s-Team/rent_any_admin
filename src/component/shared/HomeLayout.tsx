@@ -3,7 +3,7 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";
-import { Layout, Drawer, Button, Input, Spin } from "antd";
+import { Layout, Drawer, Button, Spin } from "antd";
 import { Header, Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { Sidebar } from "./Sidebar";
@@ -78,7 +78,7 @@ function HomeLayout({ children, loading }: Props) {
               />
             </>
           )}
-          <Input
+          {/* <Input
             placeholder="Search"
             className={`search-input h-[45px] xl:w-[500px] lg:w-[350px] w-[250px]`}
             style={{
@@ -87,8 +87,10 @@ function HomeLayout({ children, loading }: Props) {
               // border: "none",
             }}
             prefix={<img className="w-[20px]" src="/icons/search.png" />}
-          />
-          <ProfileDropdown />
+          /> */}
+          <div className=" lg:w-full flex justify-end">
+            <ProfileDropdown />
+          </div>
         </Header>
         <Content
           style={{

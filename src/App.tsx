@@ -35,7 +35,7 @@ const App: React.FC = () => {
         <Route path="/product-ads" element={<ProductAds />} />
         <Route path="/requests" element={<Resquest />} />
         <Route path="/categories" element={<CategoriesManagement />} />
-        <Route path="/subscriptions" element={<Subscription />} />
+        <Route path="/boost-packages" element={<Subscription />} />
         <Route path="/boost-requests" element={<BoostRequests />} />
         <Route path="/queries" element={<Queries />} />
         <Route path="/faqs" element={<Faqs />} />

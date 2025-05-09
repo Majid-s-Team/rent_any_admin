@@ -1,7 +1,7 @@
 export const addSubscription = [
   {
     title: "Package Name",
-    name: "package_name",
+    name: "name",
     rules: [{ required: true, message: "Please input your Package Name!" }],
     type: "text",
   },
@@ -12,9 +12,15 @@ export const addSubscription = [
     type: "number",
   },
   {
-    title: "Number of Ads ",
-    name: "number_of_ads",
-    rules: [{ required: true, message: "Please input your Number of Ads!" }],
+    title: "Price",
+    name: "price",
+    rules: [{ required: true, message: "Please input your Price!" }],
     type: "number",
+  },
+  {
+    title: "Description",
+    name: "description",
+    rules: [{ required: true, message: "Please input your description!" }],
+    type: "text",
   },
 ];

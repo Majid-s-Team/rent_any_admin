@@ -134,3 +134,21 @@ export const boostingPackage: ApiRoute = {
   method: requestMethods.GET,
   auth: true,
 };
+
+export const createBoostingPackage: ApiRoute = {
+  url: "/boosting-package",
+  method: requestMethods.POST,
+  auth: true,
+};
+
+export const updateBoostingPackage: ApiRoute = {
+  url: "/boosting-package",
+  method: requestMethods.PATCH,
+  auth: true,
+};
+
+export const deleteBoostingPackage: ApiRoute = {
+  url: "/boosting-package",
+  method: requestMethods.DELETE,
+  auth: true,
+};

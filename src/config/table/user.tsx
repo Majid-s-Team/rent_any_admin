@@ -17,10 +17,10 @@ export const userColumns = (path: string) => {
       title: "Phone Number",
       dataIndex: "mobile_no",
     },
-    {
-      title: "Total Ads",
-      dataIndex: "Total Ads",
-    },
+    // {
+    //   title: "Total Ads",
+    //   dataIndex: "Total Ads",
+    // },
     {
       title: "Actions",
       dataIndex: "Actions",

@@ -5,30 +5,51 @@ import { withAuthGuard } from "../component/higherOrder/withAuth";
 import CustomButton from "../component/shared/CustomButton";
 import { useState } from "react";
 import AddSubscriptionPackage from "../component/partial/AddSubscriptionPackage";
-import { boostingPackage } from "../repositories";
+import { boostingPackage, deleteBoostingPackage } from "../repositories";
 import { useRequest } from "../hooks/useRequest";
 
 const Subscription = () => {
   const [open, setOpen] = useState(false);
-  const { data, loading } = useRequest<any>(
+  const [selectedRecord, setSelectedRecord] = useState<any>(null);
+  const { data, loading, setData } = useRequest<any>(
     boostingPackage.url,
     boostingPackage.method,
     {
       type: "mount",
     }
   );
+
+  const { execute } = useRequest(
+    deleteBoostingPackage.url,
+    deleteBoostingPackage.method,
+    {
+      type: "delay",
+    }
+  );
+
+  const handleDelete = (id: string) => {
+    execute({
+      routeParams: id,
+      cbSuccess: () => {
+        setData((p: any[]) => p.filter((item) => item._id !== id));
+      },
+    });
+  };
+
   return (
     <HomeLayout>
       <div className="flex items-center justify-between">
-        <p className="text-[#171717] text-[32px] red-bold">
-          Subscription Packages
-        </p>
+        <p className="text-[#171717] text-[32px] red-bold">Boost Packages</p>
         <CustomButton title="Add" onClick={() => setOpen(true)} />
       </div>
 
       <TableData
-        title="Subscription"
-        columns={subscriptionColumns}
+        title="View List Boost Packages"
+        columns={subscriptionColumns({
+          setOpen,
+          setSelectedRecord,
+          handleDelete,
+        })}
         loading={loading}
         data={data}
       />
@@ -36,6 +57,9 @@ const Subscription = () => {
         <AddSubscriptionPackage
           isModalOpen={open}
           handleCancel={() => setOpen(false)}
+          record={selectedRecord}
+          setData={setData}
+          setSelectedRecord={setSelectedRecord}
         />
       )}
     </HomeLayout>

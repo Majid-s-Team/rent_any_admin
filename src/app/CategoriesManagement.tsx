@@ -4,12 +4,14 @@ import { categoriesColumns } from "../config";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import CustomButton from "../component/shared/CustomButton";
 import { useState } from "react";
-import AddCategorie from "../component/partial/AddCategorie";
 import { useRequest } from "../hooks/useRequest";
 import { categories, categoriesDelete } from "../repositories";
+import { Category } from "../types";
+import AddCategory from "../component/partial/AddCategory";
+
 const CategoriesManagement = () => {
   const [open, setOpen] = useState(false);
-  const [selectedRecord, setSelectedRecord] = useState<any | undefined>(null);
+  const [selectedRecord, setSelectedRecord] = useState<Category | null>(null);
 
   const { data, setData, loading, pagination, onPaginationChange } = useRequest(
     categories.url,
@@ -31,7 +33,7 @@ const CategoriesManagement = () => {
     execute({
       routeParams: id,
       cbSuccess: () => {
-        setData((p: any) => p.filter((item: any) => item._id !== id));
+        setData((p: Category[]) => p.filter((item) => item._id !== id));
       },
     });
   };
@@ -52,18 +54,17 @@ const CategoriesManagement = () => {
           setSelectedRecord,
           handleDelete,
         })}
-        data={data as any}
+        data={data as Category[]}
         loading={loading}
         pagination={pagination}
         onPaginationChange={onPaginationChange}
       />
       {open && (
-        <AddCategorie
+        <AddCategory
           record={selectedRecord}
           isModalOpen={open}
           handleCancel={() => setOpen(false)}
           setData={setData}
-          categories={data}
           setSelectedRecord={setSelectedRecord}
         />
       )}

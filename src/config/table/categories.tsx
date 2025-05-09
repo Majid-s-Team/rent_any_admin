@@ -1,5 +1,6 @@
-import { Avatar } from "antd";
+import { Avatar, Popconfirm } from "antd";
 import { Dispatch } from "react";
+import { Category } from "../../types";
 
 type Props = {
   setOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -26,14 +27,10 @@ export const categoriesColumns = ({
     title: "Category Name",
     dataIndex: "name",
   },
-  // {
-  //   title: "Subcategories",
-  //   dataIndex: "subcategories",
-  // },
   {
     title: "Actions",
     dataIndex: "Actions",
-    render: (_: string, record: any) => (
+    render: (_: string, record: Category) => (
       <div className="flex items-center gap-5">
         <img
           onClick={() => {
@@ -44,12 +41,16 @@ export const categoriesColumns = ({
           src="/icons/edit.png"
           alt=""
         />
-        <img
-          onClick={() => handleDelete(record._id)}
-          className="w-[30px] cursor-pointer"
-          src="/icons/delete.png"
-          alt=""
-        />
+        <Popconfirm
+          title="Are you sure to delete this category?"
+          onConfirm={() => handleDelete(record?._id as string)}
+        >
+          <img
+            className="w-[30px] cursor-pointer"
+            src="/icons/delete.png"
+            alt=""
+          />
+        </Popconfirm>
       </div>
     ),
   },

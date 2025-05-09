@@ -3,28 +3,110 @@ import AuthButton from "./AuthButton";
 import ImagePicker from "./ImagePicker";
 import BaseInput from "../shared/BaseInput";
 import { addSubscription } from "../../config";
+import { useRequest } from "../../hooks/useRequest";
+import {
+  createBoostingPackage,
+  updateBoostingPackage,
+} from "../../repositories";
+import { Dispatch } from "react";
+import { updateState } from "../../helper";
 
-interface CashOutprops {
+type AddPackageProps = {
   isModalOpen: boolean;
   handleCancel: () => void;
-}
+  record: any | null;
+  setData: Dispatch<React.SetStateAction<any[]>>;
+  setSelectedRecord: Dispatch<React.SetStateAction<any | null>>;
+};
 
-function AddSubscriptionPackage({ isModalOpen, handleCancel }: CashOutprops) {
+function AddSubscriptionPackage({
+  isModalOpen,
+  handleCancel,
+  record,
+  setData,
+  setSelectedRecord,
+}: AddPackageProps) {
+  const { execute: createPackage, loading: loadingCreate } = useRequest(
+    createBoostingPackage.url,
+    createBoostingPackage.method,
+    {
+      type: "delay",
+    }
+  );
+
+  const { execute: updatePackage, loading: loadingUpdate } = useRequest(
+    updateBoostingPackage.url,
+    updateBoostingPackage.method,
+    {
+      type: "delay",
+    }
+  );
+
+  const onFinish = (payload: any) => {
+    const action = record ? updatePackage : createPackage;
+
+    action({
+      body: {
+        ...payload,
+        price: payload?.price.toString(),
+        duration: payload?.duration.toString(),
+      },
+      routeParams: record?._id,
+      cbSuccess: (res) => {
+        setData((prev) => updateState(prev, res.data, !!record));
+        onClose();
+      },
+    });
+
+    // if (record) {
+    //   updatePackage({
+    //     body: {
+    //       ...payload,
+    //       price: payload?.price.toString(),
+    //       duration: payload?.duration.toString(),
+    //     },
+    //     routeParams: record?._id,
+    //     cbSuccess: (res) => {
+    //       setData((prev) => updateState(prev, res.data, true));
+    //       onClose();
+    //     },
+    //   });
+    // } else {
+    //   createPackage({
+    //     body: {
+    //       ...payload,
+    //       price: payload?.price.toString(),
+    //       duration: payload?.duration.toString(),
+    //     },
+    //     cbSuccess: (res) => {
+    //       setData((prev) => updateState(prev, res.data, false));
+    //       onClose();
+    //     },
+    //   });
+    // }
+  };
+
+  const onClose = () => {
+    setSelectedRecord(null);
+    handleCancel();
+  };
+
   return (
     <Modal
       open={isModalOpen}
-      onCancel={handleCancel}
+      onCancel={onClose}
       footer={null}
       title="Add Subscription Package"
       centered
     >
-      <Form layout="vertical">
+      <Form layout="vertical" onFinish={onFinish}>
         <Form.Item
           label="Package Icon"
-          name="image"
+          name="image_url"
+          initialValue={record?.image_url}
           rules={[{ required: true, message: "Please enter your image" }]}
         >
-          <ImagePicker onChange={() => {}} initialImgSrc={undefined} />
+          <ImagePicker onChange={() => {}} initialImgSrc={record?.image_url} />
         </Form.Item>
         <div className="mt-5">
           {addSubscription.map((item) => (
@@ -33,12 +115,17 @@ function AddSubscriptionPackage({ isModalOpen, handleCancel }: CashOutprops) {
               key={item.name}
               name={item.name}
               rules={item.rules}
+              initialValue={record?.[item.name]}
             >
               <BaseInput {...item} />
             </Form.Item>
           ))}
         </div>
-        <AuthButton text={"Done"} />
+        <AuthButton
+          loading={loadingCreate || loadingUpdate}
+          htmlType="submit"
+          text={"Done"}
+        />
       </Form>
     </Modal>
   );

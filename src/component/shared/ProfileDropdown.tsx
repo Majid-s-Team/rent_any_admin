@@ -1,26 +1,26 @@
-import { Avatar, Button, Divider, Dropdown, Menu, Select } from "antd";
+import { Avatar, Button, Divider, Dropdown, Menu } from "antd";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import EditProfileModal from "../partial/EditProfileModal";
 import ChangePasswordModal from "../partial/ChangePasswordModal";
 
-const languages = [
-  {
-    lang: "English",
-    value: "en",
-    flag: "/images/english-flag.png",
-  },
-  {
-    lang: "French",
-    value: "fr",
-    flag: "/images/french-flag.png",
-  },
-  {
-    lang: "Spanish",
-    value: "sp",
-    flag: "/images/spanish-flag.png",
-  },
-];
+// const languages = [
+//   {
+//     lang: "English",
+//     value: "en",
+//     flag: "/images/english-flag.png",
+//   },
+//   {
+//     lang: "French",
+//     value: "fr",
+//     flag: "/images/french-flag.png",
+//   },
+//   {
+//     lang: "Spanish",
+//     value: "sp",
+//     flag: "/images/spanish-flag.png",
+//   },
+// ];
 
 function ProfileDropdown() {
   const { user, logout } = useAuth();
@@ -68,7 +68,7 @@ function ProfileDropdown() {
 
   return (
     <div className="flex items-center gap-2">
-      {!isMobile && (
+      {/* {!isMobile && (
         <div className="flex items-center gap-3">
           <img className="w-[25px]" src="/icons/notification.png" alt="" />
           <div className="flex  justify-center items-center">
@@ -96,7 +96,7 @@ function ProfileDropdown() {
             </Select>
           </div>
         </div>
-      )}
+      )} */}
       <Dropdown
         overlay={DropdownMenu}
         trigger={["click"]}

@@ -3,11 +3,12 @@ import TableData from "../component/shared/Table";
 import { boostRequestColumns, boostRequests } from "../config";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import { useRequest } from "../hooks/useRequest";
-import { boostingRequest } from "../repositories";
+import { advertisements } from "../repositories";
 
 const BoostRequests = () => {
-  const { data } = useRequest(boostingRequest.url, boostingRequest.method, {
+  const { data } = useRequest<any>(advertisements.url, advertisements.method, {
     type: "mount",
+    // params: { status: "pending" },
   });
 
   console.log(data, "data");

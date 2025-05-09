@@ -93,3 +93,28 @@ export const optionpPicker = (
     },
   }));
 };
+
+export const updateState = (prev: any[], payload: any, update: boolean) => {
+  return update
+    ? prev.map((item) => (item._id === payload._id ? payload : item))
+    : [...prev, payload];
+};
+
+export const handleFormSubmit = (
+  payload: any,
+  record: any,
+  createFn: (params: any) => void,
+  updateFn: (params: any) => void,
+  setData: (fn: (prev: any) => any) => void,
+  onClose: () => void
+) => {
+  const action = record ? updateFn : createFn;
+  action({
+    body: { ...payload, has_children: false },
+    routeParams: record?._id,
+    cbSuccess: (res: any) => {
+      setData((prev: any) => updateState(prev, res.data, !!record));
+      onClose();
+    },
+  });
+};

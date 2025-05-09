@@ -35,12 +35,12 @@ export const sidebarLinks = [
   //   icon: "/icons/list.png",
   //   iconactive: "/icons/list-active.png",
   // },
-  // {
-  //   key: "/subscriptions",
-  //   label: "Subscriptions",
-  //   icon: "/icons/subscriptions.png",
-  //   iconactive: "/icons/subscriptions-active.png",
-  // },
+  {
+    key: "/boost-packages",
+    label: "Boost Packages",
+    icon: "/icons/subscriptions.png",
+    iconactive: "/icons/subscriptions-active.png",
+  },
   {
     key: "/boost-requests",
     label: "Boost Ads",

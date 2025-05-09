@@ -14,7 +14,7 @@ const BoostRequests = () => {
 
   return (
     <HomeLayout>
-      <p className="text-[#171717] text-[32px] red-bold">Boost Requests</p>
+      <p className="text-[#171717] text-[32px] red-bold">Boost Ads</p>
       <TableData
         title=""
         columns={boostRequestColumns}

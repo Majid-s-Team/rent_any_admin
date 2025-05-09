@@ -26,4 +26,5 @@ export type UserType = {
   created_at: string;
   id_back: string;
   id_front: string;
+  address: string;
 };

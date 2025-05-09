@@ -1,5 +1,6 @@
 import React from "react";
 import { Divider, Select } from "antd";
+import Text from "../higherOrder/Text";
 
 type AuthlayoutProps = {
   children: React.ReactNode;
@@ -8,6 +9,16 @@ type AuthlayoutProps = {
 };
 
 function Authlayout({ children, heading, subheading }: AuthlayoutProps) {
+  // const { i18n } = useTranslation();
+
+  // const langChange = (lang: string) => {
+  //   i18n.changeLanguage(lang);
+  // };
+
+  // useEffect(() => {
+  //   document.body.dir = i18n.dir();
+  // }, [i18n, i18n.language]);
+
   return (
     <div className="grid lg:grid-cols-2 min-h-screen">
       <div className="flex justify-center items-center">
@@ -29,6 +40,7 @@ function Authlayout({ children, heading, subheading }: AuthlayoutProps) {
             className="login-select"
             defaultValue={"en"}
             style={{ width: 100, border: 0 }}
+            // onChange={langChange}
           >
             <Select.Option value="en">English</Select.Option>
             <Select.Option value="ar">Arabic</Select.Option>
@@ -37,12 +49,20 @@ function Authlayout({ children, heading, subheading }: AuthlayoutProps) {
         <div className="pt-[60px] flex justify-center">
           <div className="text-center">
             <div className="pt-[60px]">
-              <p className="text-[23.78px] text-[##171717] red-semibold">
+              <Text
+                text={heading}
+                className="text-[23.78px] text-[##171717] red-semibold"
+              />
+              <Text
+                text={subheading}
+                className="text-[14.27px] text-[#171717] red-regular"
+              />
+              {/* <p className="text-[23.78px] text-[##171717] red-semibold">
                 {heading}
-              </p>
-              <p className="text-[14.27px] text-[#171717] red-regular">
+              </p> */}
+              {/* <p className="text-[14.27px] text-[#171717] red-regular">
                 {subheading}
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

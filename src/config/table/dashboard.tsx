@@ -14,16 +14,16 @@ export const dashboardcolumns = [
   {
     title: "Owner Name",
     dataIndex: "owner_name",
-    // render: (_: string, record: any) => <p>{record?.user?.name}</p>,
+    render: (_: string, record: any) => <p>{record?.user?.name}</p>,
   },
   {
     title: "Rent",
     dataIndex: "price_per_day",
-    // render: (text: string) => (
-    //   <p className="text-[#4D4D4D] text-[14px]">
-    //     {text ? parseFloat(text).toFixed(2) : 0}
-    //   </p>
-    // ),
+    render: (text: string) => (
+      <p className="text-[#4D4D4D] text-[14px]">
+        {text ? parseFloat(text).toFixed(2) : 0}
+      </p>
+    ),
   },
   {
     title: "Status",

@@ -1,17 +1,19 @@
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
-import { dashboardcolumns, dashboardData } from "../config";
+import { dashboardcolumns } from "../config";
 import { DatePicker } from "antd";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import { useRequest } from "../hooks/useRequest";
 import { advertisements } from "../repositories";
 
 const ProductAds = () => {
-  const { data } = useRequest(advertisements.url, advertisements.method, {
-    type: "mount",
-  });
-
-  console.log(data, "data");
+  const { data, loading, pagination, onPaginationChange } = useRequest<any>(
+    advertisements.url,
+    advertisements.method,
+    {
+      type: "mount",
+    }
+  );
 
   return (
     <HomeLayout>
@@ -19,10 +21,10 @@ const ProductAds = () => {
       <TableData
         title="Ads"
         columns={dashboardcolumns}
-        data={dashboardData}
-        // loading={loading}
-        // onPaginationChange={onPaginationChange}
-        // pagination={pagination}
+        data={data}
+        loading={loading}
+        onPaginationChange={onPaginationChange}
+        pagination={pagination}
         input={
           <>
             <DatePicker width={200} />

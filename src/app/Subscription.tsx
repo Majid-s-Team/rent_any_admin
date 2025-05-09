@@ -1,13 +1,22 @@
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
-import { subscriptionColumns, subscriptions } from "../config";
+import { subscriptionColumns } from "../config";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import CustomButton from "../component/shared/CustomButton";
 import { useState } from "react";
 import AddSubscriptionPackage from "../component/partial/AddSubscriptionPackage";
+import { boostingPackage } from "../repositories";
+import { useRequest } from "../hooks/useRequest";
 
 const Subscription = () => {
   const [open, setOpen] = useState(false);
+  const { data, loading } = useRequest<any>(
+    boostingPackage.url,
+    boostingPackage.method,
+    {
+      type: "mount",
+    }
+  );
   return (
     <HomeLayout>
       <div className="flex items-center justify-between">
@@ -20,7 +29,8 @@ const Subscription = () => {
       <TableData
         title="Subscription"
         columns={subscriptionColumns}
-        data={subscriptions}
+        loading={loading}
+        data={data}
       />
       {open && (
         <AddSubscriptionPackage

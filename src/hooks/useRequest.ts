@@ -94,13 +94,13 @@ export function useRequest<T>(
                 });
               });
             }
-            // if (err.code === "ERR_NETWORK") {
-            //   notification.error({
-            //     message: "Network Error",
-            //     description: "Please check your internet connection.",
-            //   });
-            // }
-            // else
+            if (err.code === "ERR_NETWORK") {
+              notification.error({
+                message: "Network Error",
+                description: "Please check your internet connection.",
+              });
+            }
+
             // setError(err);
           })
           .call();

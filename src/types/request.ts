@@ -34,6 +34,7 @@ export type UseRequestReturn<T> = {
 };
 
 export type ResponseError = {
+  code: string;
   statusCode: number;
   error: ReactNode;
   data: ResponseErrorData;

@@ -1,6 +1,6 @@
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
-import { categoriesColumns, categoriesData } from "../config";
+import { categoriesColumns } from "../config";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import CustomButton from "../component/shared/CustomButton";
 import { useState } from "react";
@@ -11,9 +11,13 @@ const CategoriesManagement = () => {
   const [open, setOpen] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState<any | undefined>(null);
 
-  const { data, setData } = useRequest(categories.url, categories.method, {
-    type: "mount",
-  });
+  const { data, setData, loading, pagination, onPaginationChange } = useRequest(
+    categories.url,
+    categories.method,
+    {
+      type: "mount",
+    }
+  );
 
   const { execute } = useRequest(
     categoriesDelete.url,
@@ -48,10 +52,10 @@ const CategoriesManagement = () => {
           setSelectedRecord,
           handleDelete,
         })}
-        data={categoriesData}
-        // loading={loading}
-        // pagination={pagination}
-        // onPaginationChange={onPaginationChange}
+        data={data as any}
+        loading={loading}
+        pagination={pagination}
+        onPaginationChange={onPaginationChange}
       />
       {open && (
         <AddCategorie

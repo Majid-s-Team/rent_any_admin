@@ -3,16 +3,20 @@ import { Avatar, Switch } from "antd";
 export const subscriptionColumns = [
   {
     title: "Package Icon",
-    dataIndex: "package_icon",
+    dataIndex: "image_url",
     render: (text: string) => <Avatar size={50} src={text} alt="" />,
   },
   {
     title: "Number of Ads",
-    dataIndex: "number_of_ads",
+    dataIndex: "name",
   },
   {
     title: "Duration",
     dataIndex: "duration",
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
   },
   {
     title: "Actions",

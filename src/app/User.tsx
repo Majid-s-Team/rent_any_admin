@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
 import { Select } from "antd";
-import { userColumns, userData } from "../config";
+import { userColumns } from "../config";
 import { useRequest } from "../hooks/useRequest";
 import { user } from "../repositories";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
@@ -11,9 +11,8 @@ const tabs = ["Users Management", "Business Users Management"];
 
 function User() {
   const [activeTab, setActiveTab] = useState(1);
-  const { data, execute } = useRequest(user.url, user.method, {});
-
-  console.log(data, "data");
+  const { data, execute, loading, pagination, onPaginationChange } =
+    useRequest<any>(user.url, user.method, {});
 
   useEffect(() => {
     execute({
@@ -48,10 +47,10 @@ function User() {
       <TableData
         title={tabs[activeTab - 1]}
         columns={userColumns(tabs[activeTab - 1])}
-        data={userData}
-        // loading={loading}
-        // onPaginationChange={onPaginationChange}
-        // pagination={pagination}
+        data={data}
+        loading={loading}
+        onPaginationChange={onPaginationChange}
+        pagination={pagination}
         input={
           <>
             <Select defaultValue="All" style={{ width: 150 }} />

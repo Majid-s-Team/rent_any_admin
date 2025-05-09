@@ -25,8 +25,6 @@ function FaqsModal({ isModalOpen, handleCancel, setData }: BankEditModalProps) {
     });
   };
 
-  console.log(onFinish);
-
   return (
     <Modal
       open={isModalOpen}
@@ -35,7 +33,7 @@ function FaqsModal({ isModalOpen, handleCancel, setData }: BankEditModalProps) {
       title="Add Faqs"
       centered
     >
-      <Form layout="vertical">
+      <Form layout="vertical" onFinish={onFinish}>
         <Form.Item
           label="Question"
           name="question"

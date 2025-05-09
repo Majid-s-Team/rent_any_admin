@@ -15,6 +15,7 @@ export const categoriesColumns = ({
   {
     title: "Category ID",
     dataIndex: "_id",
+    render: (text: string) => <p>#{text.slice(0, 5)}</p>,
   },
   {
     title: "Category Icon",

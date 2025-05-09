@@ -7,12 +7,13 @@ import { FeildType, RouteTypes } from "../../types";
 import { withAuthGuard } from "../../component/higherOrder/withAuth";
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import Text from "../../component/higherOrder/Text";
 
 function Login() {
   const { login, loading } = useAuth();
 
   return (
-    <AuthLayout heading={"Welcome Back"} subheading={"Login to continue"}>
+    <AuthLayout heading={"welcome"} subheading={"login"}>
       <div>
         <Form
           layout="vertical"
@@ -47,11 +48,12 @@ function Login() {
               // }
               className="!text-[#E33C3C] text-[15px] urbanist-regular"
             >
-              Forgot Password?
+              <Text text={"forgotPassword"} />
+              {/* Forgot Password? */}
             </Link>
           </div>
           <AuthButton
-            text={"Login"}
+            text={"loginBtn"}
             loading={loading}
             htmlType="submit"
             // onClick={() => navigate("/dashboard")}

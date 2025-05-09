@@ -1,5 +1,3 @@
-import { Button } from "antd";
-
 export const boostRequestColumns = [
   {
     title: "View Request",
@@ -15,18 +13,18 @@ export const boostRequestColumns = [
       <p className="text-[#4D4D4D] text-[14px]">{text} days</p>
     ),
   },
-  {
-    title: "Action",
-    dataIndex: "action",
-    render: () => (
-      <div className="flex items-center gap-2">
-        <Button className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] text-white hover:!text-white rounded-[6px] border-none">
-          Approve
-        </Button>
-        <Button className=" rounded-[6px]">Disapprove</Button>
-      </div>
-    ),
-  },
+  // {
+  //   title: "Action",
+  //   dataIndex: "action",
+  //   render: () => (
+  //     <div className="flex items-center gap-2">
+  //       <Button className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] text-white hover:!text-white rounded-[6px] border-none">
+  //         Approve
+  //       </Button>
+  //       <Button className=" rounded-[6px]">Disapprove</Button>
+  //     </div>
+  //   ),
+  // },
 ];
 
 export const boostRequests = [

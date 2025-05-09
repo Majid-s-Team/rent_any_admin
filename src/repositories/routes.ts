@@ -122,3 +122,15 @@ export const boostingRequest: ApiRoute = {
   method: requestMethods.GET,
   auth: true,
 };
+
+export const queries: ApiRoute = {
+  url: "/help-query",
+  method: requestMethods.GET,
+  auth: true,
+};
+
+export const boostingPackage: ApiRoute = {
+  url: "/boosting-package",
+  method: requestMethods.GET,
+  auth: true,
+};

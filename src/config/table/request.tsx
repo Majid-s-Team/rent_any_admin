@@ -7,30 +7,30 @@ export const requestColumns = () => {
     {
       title: "Business Name",
       dataIndex: "business_name",
-      // render: (_: string, record: any) => (
-      //   <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.name}</p>
-      // ),
+      render: (_: string, record: any) => (
+        <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.name}</p>
+      ),
     },
     {
       title: "Business Email",
       dataIndex: "email",
-      // render: (_: string, record: any) => (
-      //   <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.email}</p>
-      // ),
+      render: (_: string, record: any) => (
+        <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.email}</p>
+      ),
     },
     {
       title: "Contact Number",
       dataIndex: "mobile_no",
-      // render: (_: string, record: any) => (
-      //   <p className="text-[#4D4D4D] text-[14px]">
-      //     {record?.vendor?.mobile_no}
-      //   </p>
-      // ),
+      render: (_: string, record: any) => (
+        <p className="text-[#4D4D4D] text-[14px]">
+          {record?.vendor?.mobile_no}
+        </p>
+      ),
     },
-    {
-      title: "Owner Name",
-      dataIndex: "owner_name",
-    },
+    // {
+    //   title: "Owner Name",
+    //   dataIndex: "owner_name",
+    // },
     {
       title: "Profile",
       dataIndex: "profile",

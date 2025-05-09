@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 import { ButtonComponentProps } from "../../types";
+import Text from "../higherOrder/Text";
 
 function AuthButton({
   text,
@@ -15,7 +16,8 @@ function AuthButton({
       onClick={onClick}
       className="w-full h-[54px] bg-[#4A7ABC] hover:!bg-[#4A7ABC] rounded-[10px] hover:border-none text-[16px] red-medium  text-white hover:!text-white my-[25px]"
     >
-      <p>{text}</p>
+      <Text text={text} />
+      {/* <p>{text}</p> */}
     </Button>
   );
 }

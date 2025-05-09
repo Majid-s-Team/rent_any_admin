@@ -40,7 +40,6 @@ function AddCategorie({
     if (record) {
       update({
         body: { ...e },
-        body_type: "formData",
         cbSuccess: (res) => {
           handleCancel();
           setData &&
@@ -54,7 +53,6 @@ function AddCategorie({
     } else {
       execute({
         body: { ...e, has_children: false },
-        body_type: "formData",
         cbSuccess: (res) => {
           handleCancel();
           setData && setData((prevData: any) => [...prevData, res?.data]);
@@ -93,7 +91,13 @@ function AddCategorie({
               rules={item.rules}
               initialValue={record?.[item.name]}
             >
-              <BaseInput options={optionpPicker(categories)} {...item} />
+              <BaseInput
+                options={[
+                  { value: "none", label: "None" },
+                  ...optionpPicker(categories),
+                ]}
+                {...item}
+              />
             </Form.Item>
           ))}
         </div>

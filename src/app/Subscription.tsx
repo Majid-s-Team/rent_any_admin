@@ -7,11 +7,14 @@ import { useState } from "react";
 import AddSubscriptionPackage from "../component/partial/AddSubscriptionPackage";
 import { boostingPackage, deleteBoostingPackage } from "../repositories";
 import { useRequest } from "../hooks/useRequest";
+import { BoostPackage } from "../types";
 
 const Subscription = () => {
   const [open, setOpen] = useState(false);
-  const [selectedRecord, setSelectedRecord] = useState<any>(null);
-  const { data, loading, setData } = useRequest<any>(
+  const [selectedRecord, setSelectedRecord] = useState<BoostPackage | null>(
+    null
+  );
+  const { data, loading, setData } = useRequest(
     boostingPackage.url,
     boostingPackage.method,
     {
@@ -31,7 +34,7 @@ const Subscription = () => {
     execute({
       routeParams: id,
       cbSuccess: () => {
-        setData((p: any[]) => p.filter((item) => item._id !== id));
+        setData((p: BoostPackage[]) => p.filter((item) => item._id !== id));
       },
     });
   };
@@ -51,7 +54,7 @@ const Subscription = () => {
           handleDelete,
         })}
         loading={loading}
-        data={data}
+        data={data as BoostPackage[]}
       />
       {open && (
         <AddSubscriptionPackage

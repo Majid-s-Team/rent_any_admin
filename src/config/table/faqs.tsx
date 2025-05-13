@@ -1,4 +1,10 @@
-export const faqsColumns = [
+import { Popconfirm } from "antd";
+
+export const faqsColumns = ({
+  setOpen,
+  setSelectedRecord,
+  handleDelete,
+}: any) => [
   {
     title: "Question",
     dataIndex: "question",
@@ -10,14 +16,28 @@ export const faqsColumns = [
   {
     title: "Actions",
     dataIndex: "Actions",
-    render: () => (
+    render: (_: string, record: any) => (
       <div className="flex items-center gap-5">
-        <img className="w-[30px] cursor-pointer" src="/icons/edit.png" alt="" />
         <img
+          onClick={() => {
+            setOpen(true);
+            setSelectedRecord(record);
+          }}
           className="w-[30px] cursor-pointer"
-          src="/icons/delete.png"
+          src="/icons/edit.png"
           alt=""
         />
+        <Popconfirm
+          title="Are you sure you want to delete this faq?"
+          onConfirm={() => handleDelete(record?._id as string)}
+        >
+          <img
+            // onClick={() => handleDelete(record?._id as string)}
+            className="w-[30px] cursor-pointer"
+            src="/icons/delete.png"
+            alt=""
+          />
+        </Popconfirm>
       </div>
     ),
   },

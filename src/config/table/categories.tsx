@@ -28,6 +28,10 @@ export const categoriesColumns = ({
     dataIndex: "name",
   },
   {
+    title: "Arabic Name",
+    dataIndex: "arabic_name",
+  },
+  {
     title: "Actions",
     dataIndex: "Actions",
     render: (_: string, record: Category) => (

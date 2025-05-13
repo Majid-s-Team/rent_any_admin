@@ -10,13 +10,14 @@ import {
 } from "../../repositories";
 import { Dispatch } from "react";
 import { updateState } from "../../helper";
+import { BoostPackage } from "../../types";
 
 type AddPackageProps = {
   isModalOpen: boolean;
   handleCancel: () => void;
-  record: any | null;
-  setData: Dispatch<React.SetStateAction<any[]>>;
-  setSelectedRecord: Dispatch<React.SetStateAction<any | null>>;
+  record: BoostPackage | null;
+  setData: Dispatch<React.SetStateAction<BoostPackage[]>>;
+  setSelectedRecord: Dispatch<React.SetStateAction<BoostPackage | null>>;
 };
 
 function AddSubscriptionPackage({
@@ -42,7 +43,7 @@ function AddSubscriptionPackage({
     }
   );
 
-  const onFinish = (payload: any) => {
+  const onFinish = (payload: BoostPackage) => {
     const action = record ? updatePackage : createPackage;
 
     action({
@@ -115,7 +116,7 @@ function AddSubscriptionPackage({
               key={item.name}
               name={item.name}
               rules={item.rules}
-              initialValue={record?.[item.name]}
+              initialValue={record?.[item.name as keyof BoostPackage]}
             >
               <BaseInput {...item} />
             </Form.Item>

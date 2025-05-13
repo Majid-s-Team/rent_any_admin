@@ -18,13 +18,13 @@ type Props = {
 function EditProfileModal({ isModalOpen, handleCancel }: Props) {
   const { user } = useAuth();
   const [, dispatch] = useUser();
-  const [image, setImage] = useState<FormData | undefined>(undefined);
+  const [image, setImage] = useState<string | undefined>(undefined);
   const { execute, loading } = useRequest(updateUser.url, updateUser.method, {
     type: "delay",
     routeParams: user?._id,
   });
 
-  const onFinish = (e: any) => {
+  const onFinish = (e: UserType) => {
     execute({
       body: { ...e, image_url: image },
       cbSuccess: (data) => {

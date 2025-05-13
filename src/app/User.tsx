@@ -6,17 +6,24 @@ import { userColumns } from "../config";
 import { useRequest } from "../hooks/useRequest";
 import { user } from "../repositories";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
+import { UserType } from "../types";
 
 const tabs = ["Users Management", "Business Users Management"];
 
 function User() {
   const [activeTab, setActiveTab] = useState(1);
-  const { data, execute, loading, pagination, onPaginationChange } =
-    useRequest<any>(user.url, user.method, {});
+  const { data, execute, loading, pagination, onPaginationChange } = useRequest(
+    user.url,
+    user.method,
+    {}
+  );
 
   useEffect(() => {
     execute({
-      params: { role: activeTab === 1 ? "user" : "business" },
+      params: {
+        role: activeTab === 1 ? "user" : "business",
+        is_admin_approved: true,
+      },
       type: "mount",
     });
   }, [activeTab]);
@@ -47,7 +54,7 @@ function User() {
       <TableData
         title={tabs[activeTab - 1]}
         columns={userColumns(tabs[activeTab - 1])}
-        data={data}
+        data={data as UserType[]}
         loading={loading}
         onPaginationChange={onPaginationChange}
         pagination={pagination}

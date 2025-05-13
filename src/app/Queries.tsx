@@ -1,12 +1,12 @@
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
-import { queriesColumns, queriesData } from "../config";
+import { queriesColumns } from "../config";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import { queries } from "../repositories";
 import { useRequest } from "../hooks/useRequest";
 
 const Queries = () => {
-  const { data } = useRequest(queries.url, queries.method, {
+  const { data, loading } = useRequest(queries.url, queries.method, {
     type: "mount",
   });
 
@@ -15,7 +15,12 @@ const Queries = () => {
   return (
     <HomeLayout>
       <p className="text-[#171717] text-[32px] red-bold">Queries</p>
-      <TableData title="" columns={queriesColumns} data={queriesData} />
+      <TableData
+        title=""
+        loading={loading}
+        columns={queriesColumns}
+        data={data as any}
+      />
     </HomeLayout>
   );
 };

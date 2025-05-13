@@ -1,31 +1,22 @@
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
-export const requestColumns = () => {
+export const requestColumns = (
+  handleRequest: (id: string, approve: boolean) => void
+) => {
   const navigate = useNavigate();
   return [
     {
-      title: "Business Name",
-      dataIndex: "business_name",
-      render: (_: string, record: any) => (
-        <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.name}</p>
-      ),
+      title: "Full Name",
+      dataIndex: "name",
     },
     {
-      title: "Business Email",
+      title: "Email Address",
       dataIndex: "email",
-      render: (_: string, record: any) => (
-        <p className="text-[#4D4D4D] text-[14px]">{record?.vendor?.email}</p>
-      ),
     },
     {
-      title: "Contact Number",
+      title: "Phone Number",
       dataIndex: "mobile_no",
-      render: (_: string, record: any) => (
-        <p className="text-[#4D4D4D] text-[14px]">
-          {record?.vendor?.mobile_no}
-        </p>
-      ),
     },
     // {
     //   title: "Owner Name",
@@ -37,7 +28,7 @@ export const requestColumns = () => {
       render: (_: string, record: any) => (
         <Button
           onClick={() =>
-            navigate("/users/details/" + record?.vendor?._id, {
+            navigate("/users/details/" + record?._id, {
               state: { path: "Business" },
             })
           }
@@ -50,12 +41,20 @@ export const requestColumns = () => {
     {
       title: "Action",
       dataIndex: "action",
-      render: () => (
+      render: (_: string, record: any) => (
         <div className="flex items-center gap-2">
-          <Button className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] text-white hover:!text-white rounded-[6px] border-none">
+          <Button
+            onClick={() => handleRequest(record?._id, true)}
+            className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] text-white hover:!text-white rounded-[6px] border-none"
+          >
             Approve
           </Button>
-          <Button className=" rounded-[6px]">Disapprove</Button>
+          <Button
+            onClick={() => handleRequest(record?._id, false)}
+            className="rounded-[6px]"
+          >
+            Disapprove
+          </Button>
         </div>
       ),
     },

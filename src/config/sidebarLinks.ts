@@ -43,7 +43,7 @@ export const sidebarLinks = [
   },
   {
     key: "/boost-requests",
-    label: "Boost Ads",
+    label: "Boosted Ads",
     icon: "/icons/boost.png",
     iconactive: "/icons/boost-active.png",
   },

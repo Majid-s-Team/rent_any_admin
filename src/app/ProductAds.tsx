@@ -5,9 +5,10 @@ import { DatePicker } from "antd";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import { useRequest } from "../hooks/useRequest";
 import { advertisements } from "../repositories";
+import { Advertisement } from "../types";
 
 const ProductAds = () => {
-  const { data, loading, pagination, onPaginationChange } = useRequest<any>(
+  const { data, loading, pagination, onPaginationChange } = useRequest(
     advertisements.url,
     advertisements.method,
     {
@@ -21,7 +22,7 @@ const ProductAds = () => {
       <TableData
         title="Ads"
         columns={dashboardcolumns}
-        data={data}
+        data={data as Advertisement[]}
         loading={loading}
         onPaginationChange={onPaginationChange}
         pagination={pagination}

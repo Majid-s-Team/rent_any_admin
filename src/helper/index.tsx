@@ -1,5 +1,6 @@
 import Server from "../config/constants/server";
 import CryptoJS from "crypto-js";
+import { useRequest } from "../hooks/useRequest";
 
 /**
  * Retrieves a value from local storage using the provided key.
@@ -117,4 +118,20 @@ export const handleFormSubmit = (
       onClose();
     },
   });
+};
+export const useHandleDeleted = (path: any, setData?: any) => {
+  const { execute } = useRequest(path?.url, path?.method, {
+    type: "delay",
+  });
+
+  const handleDeleted = (id: string) => {
+    execute({
+      routeParams: id,
+      cbSuccess: () => {
+        setData((p: any) => p.filter((item: { _id: any }) => item._id !== id));
+      },
+    });
+  };
+
+  return handleDeleted;
 };

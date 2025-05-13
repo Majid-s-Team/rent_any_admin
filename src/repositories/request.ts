@@ -61,7 +61,7 @@ export class RequestSingleton<T = unknown> {
   }
 
   public setParams(
-    params: Record<string, string | number | undefined | null> = {}
+    params: Record<string, string | number | undefined | null | boolean> = {}
   ): this {
     this.config.params = { ...this.config.params, ...params };
     return this;
@@ -75,7 +75,7 @@ export class RequestSingleton<T = unknown> {
   }
 
   public setBody(
-    body: Record<string, string | number | undefined | null | object>,
+    body: Record<string, string | number | undefined | null | object | boolean>,
     type: "json" | "formData" = "json",
     removeKeys: string[] = []
   ): this {

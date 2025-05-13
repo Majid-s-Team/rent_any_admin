@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { request } from "../repositories/index";
 import {
   GenericType,
@@ -25,7 +25,11 @@ export function useRequest<T>(
 ): UseRequestReturn<T> {
   const [data, setData] = useState<T>([] as T);
   const [loading, setLoading] = useState<boolean>(false);
-  const [service, setService] = useState(request<T>(endpoint, method));
+  // const [service, setService] = useState(request<T>(endpoint, method));
+  const service = useMemo(
+    () => request<T>(endpoint, method),
+    [endpoint, method]
+  );
   const [error, setError] = useState<{
     message: string;
     status?: number;
@@ -40,8 +44,8 @@ export function useRequest<T>(
       setLoading(true);
       setError(null);
       const apiOptions = {
-        ...requestOptions,
         ...options,
+        ...requestOptions,
       };
       try {
         const {
@@ -109,7 +113,7 @@ export function useRequest<T>(
         setError({ message: "Something went wrong", ...(err as GenericType) });
       } finally {
         setLoading(false);
-        setService(request(endpoint, method));
+        // setService(request(endpoint, method));
       }
     },
     [endpoint, method, options, pagination, loading]
@@ -118,10 +122,17 @@ export function useRequest<T>(
   const onPaginationChange = useCallback(
     (e: TablePaginationConfig) => {
       const params = service.config.params || {};
-      params.page = e.current;
-      params.limit = e.pageSize;
+
+      console.log("params", params);
+
+      const newParams = { ...params, page: e.current, limit: e.pageSize };
+
+      console.log("newParams", newParams);
+
+      // params.page = e.current;
+      // params.limit = e.pageSize;
       setPagination(e);
-      execute({ ...options, params });
+      execute({ ...options, params: newParams });
     },
     [pagination, execute]
   );

@@ -46,7 +46,7 @@ function AddCategory({
       type: "delay",
     });
 
-  const onFinish = (payload: any) => {
+  const onFinish = (payload: Category) => {
     const action = record ? updateCategory : createCategory;
     action({
       body: { ...payload, has_children: false },

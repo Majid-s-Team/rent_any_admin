@@ -6,17 +6,28 @@ import CustomButton from "../component/shared/CustomButton";
 import { useState } from "react";
 import FaqsModal from "../component/partial/FaqsModal";
 import { useRequest } from "../hooks/useRequest";
-import { faqsGet } from "../repositories";
+import { faqsDelete, faqsGet } from "../repositories";
+import { FaqsType } from "../types";
 
 const Faqs = () => {
   const [open, setOpen] = useState(false);
-  const { data, setData, loading } = useRequest<any>(
-    faqsGet.url,
-    faqsGet.method,
-    {
-      type: "mount",
-    }
-  );
+  const [selectedRecord, setSelectedRecord] = useState<FaqsType | null>(null);
+  const { data, setData, loading } = useRequest(faqsGet.url, faqsGet.method, {
+    type: "mount",
+  });
+
+  const { execute } = useRequest(faqsDelete.url, faqsDelete.method, {
+    type: "delay",
+  });
+
+  const handleDelete = (id: string) => {
+    execute({
+      routeParams: id,
+      cbSuccess: () => {
+        setData((p: FaqsType[]) => p.filter((item) => item._id !== id));
+      },
+    });
+  };
 
   return (
     <HomeLayout>
@@ -26,12 +37,18 @@ const Faqs = () => {
       </div>
       <TableData
         title="View List FAQs"
-        columns={faqsColumns}
-        data={data}
+        columns={faqsColumns({
+          setOpen,
+          setSelectedRecord,
+          handleDelete,
+        })}
+        data={data as FaqsType[]}
         loading={loading}
       />
       {open && (
         <FaqsModal
+          setRecord={setSelectedRecord}
+          record={selectedRecord}
           isModalOpen={open}
           setData={setData}
           handleCancel={() => setOpen(false)}

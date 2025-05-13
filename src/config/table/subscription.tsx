@@ -1,10 +1,19 @@
 import { Avatar, Popconfirm } from "antd";
+import { Dispatch, SetStateAction } from "react";
+import { BoostPackage } from "../../types";
+
+type Props = {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setSelectedRecord: Dispatch<SetStateAction<BoostPackage | null>>;
+  // setSelectedRecord: Dispatch<React.SetStateAction<any>>;
+  handleDelete: (id: string) => void;
+};
 
 export const subscriptionColumns = ({
   setOpen,
   setSelectedRecord,
   handleDelete,
-}: any) => [
+}: Props) => [
   {
     title: "Package Icon",
     dataIndex: "image_url",
@@ -25,7 +34,7 @@ export const subscriptionColumns = ({
   {
     title: "Actions",
     dataIndex: "Actions",
-    render: (_: string, record: any) => (
+    render: (_: string, record: BoostPackage) => (
       <div className="flex items-center gap-5">
         <img
           onClick={() => {

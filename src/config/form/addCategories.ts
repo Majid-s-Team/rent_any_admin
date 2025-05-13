@@ -6,6 +6,12 @@ export const addCategories = [
     type: "text",
   },
   {
+    title: "Arabic Name",
+    name: "arabic_name",
+    rules: [{ required: true, message: "Please input your Category Name!" }],
+    type: "text",
+  },
+  {
     title: "Parent",
     name: "parent",
     rules: [{ required: true, message: "Please select your Parent!" }],

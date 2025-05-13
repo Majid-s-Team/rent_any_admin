@@ -19,7 +19,7 @@ const Dashboard = () => {
       <p className="text-[#171717] text-[32px] red-bold">Dashboard</p>
       <StatisticsComp />
       <TableData
-        title="Recent Orders"
+        title="Recent Ads"
         columns={dashboardcolumns}
         data={dashboardData}
         input={

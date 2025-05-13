@@ -1,26 +1,31 @@
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
-import { boostRequestColumns, boostRequests } from "../config";
+import { dashboardcolumns } from "../config";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import { useRequest } from "../hooks/useRequest";
 import { advertisements } from "../repositories";
+import { BoostPackage } from "../types";
 
 const BoostRequests = () => {
-  const { data } = useRequest<any>(advertisements.url, advertisements.method, {
-    type: "mount",
-    // params: { status: "pending" },
-  });
-
-  console.log(data, "data");
+  const { data, loading, pagination, onPaginationChange } = useRequest(
+    advertisements.url,
+    advertisements.method,
+    {
+      type: "mount",
+      params: { featured: true },
+    }
+  );
 
   return (
     <HomeLayout>
-      <p className="text-[#171717] text-[32px] red-bold">Boost Ads</p>
+      <p className="text-[#171717] text-[32px] red-bold">Boosted Ads</p>
       <TableData
         title=""
-        columns={boostRequestColumns}
-        data={boostRequests}
-        // loading={loading}
+        columns={dashboardcolumns}
+        data={data as BoostPackage[]}
+        loading={loading}
+        pagination={pagination}
+        onPaginationChange={onPaginationChange}
       />
     </HomeLayout>
   );

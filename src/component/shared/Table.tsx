@@ -1,13 +1,18 @@
 import { Table, TablePaginationConfig } from "antd";
 import Text from "../higherOrder/Text";
-interface TableDataProps {
-  columns: any[];
-  data: any[];
+import { ColumnType } from "antd/es/table";
+interface TableDataProps<T = Record<string, unknown>> {
+  columns: ColumnType<T>[];
+  data: T[];
   input?: React.ReactNode;
   title?: string;
-  onClick?: (row: any) => void;
-  pagination?: TablePaginationConfig | null;
-  onPaginationChange?: (pagination: any, filters: any, sorter: any) => void;
+  onClick?: (row: T) => void;
+  pagination?: false | TablePaginationConfig | null | undefined;
+  onPaginationChange?: (
+    pagination: TablePaginationConfig,
+    filters: Record<string, any>,
+    sorter: any // Can be refined further if sorter structure is known
+  ) => void;
   loading?: boolean;
 }
 
@@ -58,7 +63,7 @@ export default function TableData({
             }
           },
         })}
-        pagination={pagination || false}
+        pagination={pagination ?? false}
         onChange={onPaginationChange}
       />
     </div>

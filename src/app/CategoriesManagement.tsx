@@ -18,6 +18,7 @@ const CategoriesManagement = () => {
     categories.method,
     {
       type: "mount",
+      params: { parent: "all" },
     }
   );
 

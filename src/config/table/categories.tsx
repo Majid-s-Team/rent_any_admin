@@ -4,7 +4,7 @@ import { Category } from "../../types";
 
 type Props = {
   setOpen: Dispatch<React.SetStateAction<boolean>>;
-  setSelectedRecord: Dispatch<React.SetStateAction<any>>;
+  setSelectedRecord: Dispatch<React.SetStateAction<Category | null>>;
   handleDelete: (id: string) => void;
 };
 

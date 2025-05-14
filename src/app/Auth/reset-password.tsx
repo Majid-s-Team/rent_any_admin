@@ -7,10 +7,8 @@ import { RouteTypes } from "../../types";
 import { useParams } from "react-router-dom";
 function Resetpassword() {
   const { reset_password_token } = useParams();
-
-  // alert(reset_password_token);
-  const [form] = Form.useForm();
   const { resetpassowrd, loading } = useAuth();
+  const [form] = Form.useForm();
 
   return (
     <AuthLayout heading={"Reset password"} subheading={""}>

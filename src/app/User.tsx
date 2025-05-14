@@ -15,15 +15,16 @@ function User() {
   const { data, execute, loading, pagination, onPaginationChange } = useRequest(
     user.url,
     user.method,
-    {}
-  );
-
-  useEffect(() => {
-    execute({
+    {
       params: {
         role: activeTab === 1 ? "user" : "business",
         is_admin_approved: true,
       },
+    }
+  );
+
+  useEffect(() => {
+    execute({
       type: "mount",
     });
   }, [activeTab]);

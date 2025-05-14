@@ -34,12 +34,12 @@ export const subscriptionColumns = ({
   {
     title: "Actions",
     dataIndex: "Actions",
-    render: (_: string, record: BoostPackage) => (
+    render: (_: string, record: Record<string, any>) => (
       <div className="flex items-center gap-5">
         <img
           onClick={() => {
             setOpen(true);
-            setSelectedRecord(record);
+            setSelectedRecord(record as BoostPackage);
           }}
           className="w-[30px] cursor-pointer"
           src="/icons/edit.png"

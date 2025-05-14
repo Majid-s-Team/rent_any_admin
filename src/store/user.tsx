@@ -5,7 +5,7 @@ import {
   UserContextType,
 } from "../types/contexts/user";
 
-export const userReducer = (state: any, action: UserActions) => {
+export const userReducer = (state: UserContextType, action: UserActions) => {
   switch (action.type) {
     case UserActionTypes.POST:
       return action.payload;

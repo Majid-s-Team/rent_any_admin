@@ -22,14 +22,22 @@ function FaqsModal({
   record,
   setRecord,
 }: Props) {
-  const { execute: createFaq } = useRequest(faqsPost.url, faqsPost.method, {
-    type: "delay",
-  });
+  const { execute: createFaq, loading: loadingCreate } = useRequest(
+    faqsPost.url,
+    faqsPost.method,
+    {
+      type: "delay",
+    }
+  );
 
-  const { execute: updateFaq } = useRequest(faqsUpdate.url, faqsUpdate.method, {
-    type: "delay",
-    routeParams: record?._id,
-  });
+  const { execute: updateFaq, loading: loadingUpdate } = useRequest(
+    faqsUpdate.url,
+    faqsUpdate.method,
+    {
+      type: "delay",
+      routeParams: record?._id,
+    }
+  );
 
   const onFinish = (e: FaqsType) => {
     const action = record ? updateFaq : createFaq;
@@ -82,7 +90,11 @@ function FaqsModal({
         >
           <BaseInput type="textarea" />
         </Form.Item>
-        <AuthButton htmlType="submit" text={"Submit"} />
+        <AuthButton
+          loading={loadingCreate || loadingUpdate}
+          htmlType="submit"
+          text={"Submit"}
+        />
       </Form>
     </Modal>
   );

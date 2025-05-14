@@ -1,10 +1,18 @@
 import { Popconfirm } from "antd";
+import { FaqsType } from "../../types";
+import { Dispatch, SetStateAction } from "react";
+
+type Props = {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setSelectedRecord: Dispatch<SetStateAction<FaqsType | null>>;
+  handleDelete: (id: string) => void;
+};
 
 export const faqsColumns = ({
   setOpen,
   setSelectedRecord,
   handleDelete,
-}: any) => [
+}: Props) => [
   {
     title: "Question",
     dataIndex: "question",
@@ -16,7 +24,7 @@ export const faqsColumns = ({
   {
     title: "Actions",
     dataIndex: "Actions",
-    render: (_: string, record: any) => (
+    render: (_: string, record: FaqsType) => (
       <div className="flex items-center gap-5">
         <img
           onClick={() => {

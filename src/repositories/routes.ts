@@ -152,3 +152,9 @@ export const deleteBoostingPackage: ApiRoute = {
   method: requestMethods.DELETE,
   auth: true,
 };
+
+export const dashboard: ApiRoute = {
+  url: "/home/admin",
+  method: requestMethods.GET,
+  auth: true,
+};

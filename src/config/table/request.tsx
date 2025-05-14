@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { UserType } from "../../types";
 
 export const requestColumns = (
   handleRequest: (id: string, approve: boolean) => void
@@ -25,7 +26,7 @@ export const requestColumns = (
     {
       title: "Profile",
       dataIndex: "profile",
-      render: (_: string, record: any) => (
+      render: (_: string, record: UserType) => (
         <Button
           onClick={() =>
             navigate("/users/details/" + record?._id, {
@@ -41,7 +42,7 @@ export const requestColumns = (
     {
       title: "Action",
       dataIndex: "action",
-      render: (_: string, record: any) => (
+      render: (_: string, record: UserType) => (
         <div className="flex items-center gap-2">
           <Button
             onClick={() => handleRequest(record?._id, true)}

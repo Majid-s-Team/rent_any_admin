@@ -22,7 +22,7 @@ const CategoriesManagement = () => {
     }
   );
 
-  const { execute } = useRequest(
+  const { execute, loading: loadingDelete } = useRequest(
     categoriesDelete.url,
     categoriesDelete.method,
     {
@@ -56,7 +56,7 @@ const CategoriesManagement = () => {
           handleDelete,
         })}
         data={data as Category[]}
-        loading={loading}
+        loading={loading || loadingDelete}
         pagination={pagination}
         onPaginationChange={onPaginationChange}
       />

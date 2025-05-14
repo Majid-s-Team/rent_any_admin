@@ -1,5 +1,6 @@
 import { Switch } from "antd";
 import { useNavigate } from "react-router-dom";
+import { UserType } from "../../types";
 
 export const userColumns = (path: string) => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const userColumns = (path: string) => {
     {
       title: "Actions",
       dataIndex: "Actions",
-      render: (_: string, record: any) => (
+      render: (_: string, record: UserType) => (
         <div className="flex items-center gap-5">
           <Switch />
           <img

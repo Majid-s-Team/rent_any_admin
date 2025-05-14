@@ -9,7 +9,7 @@ type Props = {
   presantage?: string;
 };
 
-function Statistics({ title, value, icon, down, presantage }: Props) {
+function Statistics({ title, value, icon }: Props) {
   return (
     <div className="rounded-[14px] p-6 custom-shadow bg-[#fff]">
       <div className="flex justify-between items-center gap-3">
@@ -21,7 +21,7 @@ function Statistics({ title, value, icon, down, presantage }: Props) {
         </div>
         <img className="w-[60px] h-[60px]" src={icon} alt="" />
       </div>
-      <div className="flex gap-2 items-center pt-3">
+      {/* <div className="flex gap-2 items-center pt-3">
         <img
           className="w-[20px] h-[20px]"
           src={down ? "/icons/down-arrow.png" : "/icons/up-arrow.png"}
@@ -34,7 +34,7 @@ function Statistics({ title, value, icon, down, presantage }: Props) {
         >
           {presantage} <span className="text-[#7D7D7D]">Up from yesterday</span>{" "}
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }

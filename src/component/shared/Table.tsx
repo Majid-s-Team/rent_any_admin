@@ -1,8 +1,8 @@
 import { Table, TablePaginationConfig } from "antd";
 import Text from "../higherOrder/Text";
-import { ColumnType } from "antd/es/table";
+// import { ColumnType } from "antd/es/table";
 interface TableDataProps<T = Record<string, unknown>> {
-  columns: ColumnType<T>[];
+  columns: any[];
   data: T[];
   input?: React.ReactNode;
   title?: string;

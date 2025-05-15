@@ -59,10 +59,10 @@ export const sidebarLinks = [
     icon: "/icons/faqs.png",
     iconactive: "/icons/faqs-active.png",
   },
-  {
-    key: "/static-content",
-    label: "Static Content",
-    icon: "/icons/static.png",
-    iconactive: "/icons/static-active.png",
-  },
+  // {
+  //   key: "/static-content",
+  //   label: "Static Content",
+  //   icon: "/icons/static.png",
+  //   iconactive: "/icons/static-active.png",
+  // },
 ];

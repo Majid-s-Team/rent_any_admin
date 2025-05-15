@@ -45,13 +45,13 @@ export const requestColumns = (
       render: (_: string, record: UserType) => (
         <div className="flex items-center gap-2">
           <Button
-            onClick={() => handleRequest(record?._id, true)}
+            onClick={() => handleRequest(record?._id as string, true)}
             className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] text-white hover:!text-white rounded-[6px] border-none"
           >
             Approve
           </Button>
           <Button
-            onClick={() => handleRequest(record?._id, false)}
+            onClick={() => handleRequest(record?._id as string, false)}
             className="rounded-[6px]"
           >
             Disapprove

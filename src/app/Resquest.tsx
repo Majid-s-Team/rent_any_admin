@@ -16,7 +16,11 @@ const Request = () => {
     }
   );
 
-  const { execute } = useRequest(updateUser.url, updateUser.method, {});
+  const { execute, loading: loadingUpdate } = useRequest(
+    updateUser.url,
+    updateUser.method,
+    {}
+  );
 
   const handleRequest = (id: string, request: boolean) => {
     execute({
@@ -36,7 +40,7 @@ const Request = () => {
         title=""
         columns={requestColumns(handleRequest)}
         data={data as UserType[]}
-        loading={loading}
+        loading={loading || loadingUpdate}
         pagination={pagination}
         onPaginationChange={onPaginationChange}
       />

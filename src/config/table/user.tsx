@@ -2,7 +2,10 @@ import { Switch } from "antd";
 import { useNavigate } from "react-router-dom";
 import { UserType } from "../../types";
 
-export const userColumns = (path: string) => {
+export const userColumns = (
+  path: string,
+  handleRequest: (id: string, approve: boolean) => void
+) => {
   const navigate = useNavigate();
 
   return [
@@ -27,7 +30,12 @@ export const userColumns = (path: string) => {
       dataIndex: "Actions",
       render: (_: string, record: UserType) => (
         <div className="flex items-center gap-5">
-          <Switch />
+          <Switch
+            onChange={(checked) =>
+              handleRequest(record?._id as string, checked)
+            }
+            defaultValue={record?.is_admin_approved}
+          />
           <img
             onClick={() =>
               navigate("/users/details/" + record?._id, {

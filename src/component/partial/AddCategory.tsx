@@ -28,7 +28,7 @@ function AddCategory({
   setData,
   setSelectedRecord,
 }: AddCategoryModalProps) {
-  const { data: categoriesData } = useRequest(
+  const { data: categoriesData, loading } = useRequest(
     categories.url,
     categories.method,
     {
@@ -70,6 +70,7 @@ function AddCategory({
       footer={null}
       title={record ? "Edit Category" : "Add Category"}
       centered
+      loading={loading}
     >
       <Form layout="vertical" onFinish={onFinish}>
         <Form.Item

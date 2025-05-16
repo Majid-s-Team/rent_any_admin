@@ -51,9 +51,9 @@ function ChangePasswordModal({ isModalOpen, handleCancel }: Props) {
         })}
         <Form.Item
           label={"New password"}
-          name={"password"}
+          name={"newPassword"}
           rules={[
-            { required: true, message: "Please enter your password!" },
+            { required: true, message: "Please enter your new password!" },
             {
               pattern:
                 /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
@@ -66,12 +66,13 @@ function ChangePasswordModal({ isModalOpen, handleCancel }: Props) {
         </Form.Item>
         <Form.Item
           label={"Confirm password"}
+          dependencies={["newPassword"]}
           name={"confirm_password"}
           rules={[
             { required: true, message: "Please confirm your password!" },
             {
               validator: (_, value) => {
-                const password = form.getFieldValue("password");
+                const password = form.getFieldValue("newPassword");
                 if (!value || password === value) {
                   return Promise.resolve();
                 }

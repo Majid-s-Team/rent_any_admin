@@ -4,7 +4,7 @@ import TableData from "../component/shared/Table";
 import { Select } from "antd";
 import { userColumns } from "../config";
 import { useRequest } from "../hooks/useRequest";
-import { user } from "../repositories";
+import { updateUser, user } from "../repositories";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import { UserType } from "../types";
 
@@ -12,22 +12,32 @@ const tabs = ["Users Management", "Business Users Management"];
 
 function User() {
   const [activeTab, setActiveTab] = useState(1);
-  const { data, execute, loading, pagination, onPaginationChange } = useRequest(
-    user.url,
-    user.method,
-    {
+  const { data, execute, loading, pagination, onPaginationChange, setData } =
+    useRequest(user.url, user.method, {
       params: {
         role: activeTab === 1 ? "user" : "business",
         is_admin_approved: true,
       },
-    }
-  );
+    });
+
+  const { execute: update } = useRequest(updateUser.url, updateUser.method, {});
 
   useEffect(() => {
     execute({
       type: "mount",
     });
   }, [activeTab]);
+
+  const handleRequest = (id: string, approve: boolean) => {
+    update({
+      body: { is_admin_approved: approve },
+      routeParams: id,
+      type: "mount",
+      cbSuccess: () => {
+        setData((p: UserType[]) => p.filter((item) => item._id !== id));
+      },
+    });
+  };
 
   return (
     <HomeLayout>
@@ -54,7 +64,7 @@ function User() {
       </div>
       <TableData
         title={tabs[activeTab - 1]}
-        columns={userColumns(tabs[activeTab - 1])}
+        columns={userColumns(tabs[activeTab - 1], handleRequest)}
         data={data as UserType[]}
         loading={loading}
         onPaginationChange={onPaginationChange}

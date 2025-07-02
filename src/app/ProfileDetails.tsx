@@ -43,6 +43,10 @@ function ProfileDetails() {
     { label: "Address", value: data?.address },
     !isBusiness && { label: "Date Of Birth", value: data?.dob },
     !isBusiness && { label: "Gender", value: data?.gender },
+    data?.disapprove_reason && {
+      label: "Disapprove Reason",
+      value: data?.disapprove_reason,
+    },
   ].filter(Boolean) as { label: string; value: string | undefined }[];
 
   return (

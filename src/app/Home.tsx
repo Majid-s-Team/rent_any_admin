@@ -25,7 +25,6 @@ const Dashboard = () => {
         title="Recent Ads"
         columns={dashboardcolumns}
         data={data?.recent_ads as Advertisement[]}
-        // loading={loading}
         input={
           <>
             <DatePicker width={200} />

@@ -4,6 +4,8 @@ interface Location {
 }
 
 export type UserType = {
+  disapprove_reason?: string;
+  status?: boolean | undefined;
   is_admin_approved?: boolean | undefined;
   current_location?: Location;
   rating?: number;

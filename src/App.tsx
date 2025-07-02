@@ -16,6 +16,7 @@ import Queries from "./app/Queries";
 import Faqs from "./app/Faqs";
 import StaticContent from "./app/StaticContent";
 import ProfileDetails from "./app/ProfileDetails";
+import AdDetail from "./app/AdDetails";
 
 const App: React.FC = () => {
   return (
@@ -41,6 +42,7 @@ const App: React.FC = () => {
         <Route path="/faqs" element={<Faqs />} />
         <Route path="/static-content" element={<StaticContent />} />
         <Route path="/users/details/:id" element={<ProfileDetails />} />
+        <Route path="/product-ads/:id" element={<AdDetail />} />
       </Routes>
     </>
   );

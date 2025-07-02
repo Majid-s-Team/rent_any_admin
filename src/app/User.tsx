@@ -30,11 +30,15 @@ function User() {
 
   const handleRequest = (id: string, approve: boolean) => {
     update({
-      body: { is_admin_approved: approve },
+      body: { status: approve },
       routeParams: id,
       type: "mount",
       cbSuccess: () => {
-        setData((p: UserType[]) => p.filter((item) => item._id !== id));
+        setData((p: UserType[]) =>
+          p.filter((item) =>
+            item._id === id ? { ...item, is_admin_approved: approve } : item
+          )
+        );
       },
     });
   };

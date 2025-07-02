@@ -7,3 +7,4 @@ export * from "./subscription";
 export * from "./boostRequests";
 export * from "./queries";
 export * from "./faqs";
+export * from "./ads";

@@ -2,9 +2,12 @@ import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { UserType } from "../../types";
 
-export const requestColumns = (
-  handleRequest: (id: string, approve: boolean) => void
-) => {
+type Props = {
+  handleRequest: (id: string, approve: boolean) => void;
+  handleDisapprove: (record: UserType) => void;
+};
+
+export const requestColumns = ({ handleRequest, handleDisapprove }: Props) => {
   const navigate = useNavigate();
   return [
     {
@@ -19,10 +22,15 @@ export const requestColumns = (
       title: "Phone Number",
       dataIndex: "mobile_no",
     },
-    // {
-    //   title: "Owner Name",
-    //   dataIndex: "owner_name",
-    // },
+    {
+      title: "Status",
+      dataIndex: "status",
+      render: (_: string, record: UserType) => (
+        <p className="text-white text-[14px] py-1 w-[100px] bg-[#00B69B] text-center rounded-[40px]">
+          {record?.is_admin_approved ? "Approved" : "Pending"}
+        </p>
+      ),
+    },
     {
       title: "Profile",
       dataIndex: "profile",
@@ -51,7 +59,7 @@ export const requestColumns = (
             Approve
           </Button>
           <Button
-            onClick={() => handleRequest(record?._id as string, false)}
+            onClick={() => handleDisapprove(record)}
             className="rounded-[6px]"
           >
             Disapprove
@@ -61,31 +69,3 @@ export const requestColumns = (
     },
   ];
 };
-
-export const requestData = [
-  {
-    business_name: "ABC Corporation",
-    email: "info@abccorp.com",
-    mobile_no: "1234567890",
-    owner_name: "John Doe",
-    profile: "https://example.com/profile/1",
-    action: "Approved",
-  },
-  {
-    business_name: "XYZ Inc.",
-    email: "contact@xyzinc.com",
-    mobile_no: "9876543210",
-    owner_name: "Jane Smith",
-    profile: "https://example.com/profile/2",
-    action: "Pending",
-  },
-  {
-    business_name: " DEF Enterprises",
-    email: "def@enterprises.com",
-    mobile_no: "5551234567",
-    owner_name: "Bob Johnson",
-    profile: "https://example.com/profile/3",
-    action: "Rejected",
-  },
-  // Add more data here...
-];

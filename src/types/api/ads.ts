@@ -56,6 +56,7 @@ interface User {
 }
 
 interface Media {
+  url: string | undefined;
   file: string;
   thumbnail: string | null;
   type: string;

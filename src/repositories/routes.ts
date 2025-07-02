@@ -63,6 +63,12 @@ export const advertisements: ApiRoute = {
   auth: true,
 };
 
+export const advertisementsDelete: ApiRoute = {
+  url: "/advertisement",
+  method: requestMethods.DELETE,
+  auth: true,
+};
+
 export const bookingRequest: ApiRoute = {
   url: "/booking-request",
   method: requestMethods.GET,

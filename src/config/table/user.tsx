@@ -34,7 +34,7 @@ export const userColumns = (
             onChange={(checked) =>
               handleRequest(record?._id as string, checked)
             }
-            defaultValue={record?.is_admin_approved}
+            defaultValue={record?.status}
           />
           <img
             onClick={() =>

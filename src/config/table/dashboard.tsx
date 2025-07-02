@@ -22,10 +22,7 @@ export const dashboardcolumns = [
     title: "Rent",
     dataIndex: "price_per_day",
     render: (text: string) => (
-      <p className="text-[#4D4D4D] text-[14px]">
-        {text}
-        {/* {text ? parseFloat(text).toFixed(2) : 0} */}
-      </p>
+      <p className="text-[#4D4D4D] text-[14px]">{text}</p>
     ),
   },
   {

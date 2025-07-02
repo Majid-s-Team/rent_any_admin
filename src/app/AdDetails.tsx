@@ -35,7 +35,7 @@ const AdDetail = () => {
               {data.media.map((item, index) => (
                 <div key={index}>
                   <img
-                    src={item.url}
+                    src={item.file}
                     alt={`media-${index}`}
                     className="w-full h-[400px] object-cover"
                   />
@@ -50,9 +50,11 @@ const AdDetail = () => {
           <p className="text-sm text-white inline-block bg-green-500 px-3 py-1 rounded mb-4 capitalize">
             {data.ad_status}
           </p>
-          <p className="text-gray-700 text-base mb-4">{data.description}</p>
+          <p className="text-gray-700 text-[18px] mb-4">
+            <strong>Description:</strong> {data.description}
+          </p>
 
-          <div className="text-sm text-gray-600 space-y-2">
+          <div className="text-[18px] text-gray-600 space-y-2">
             <p>
               <strong>Brand:</strong> {data.brand}
             </p>

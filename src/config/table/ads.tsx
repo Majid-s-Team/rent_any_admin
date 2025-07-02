@@ -1,5 +1,6 @@
 import { Popconfirm } from "antd";
 import { Advertisement } from "../../types";
+import { Link } from "react-router-dom";
 
 export const adsColumns = (handleDelete: (id: string) => void) => {
   return [
@@ -24,10 +25,7 @@ export const adsColumns = (handleDelete: (id: string) => void) => {
       title: "Rent",
       dataIndex: "price_per_day",
       render: (text: string) => (
-        <p className="text-[#4D4D4D] text-[14px]">
-          {text}
-          {/* {text ? parseFloat(text).toFixed(2) : 0} */}
-        </p>
+        <p className="text-[#4D4D4D] text-[14px]">{text}</p>
       ),
     },
     {
@@ -39,18 +37,18 @@ export const adsColumns = (handleDelete: (id: string) => void) => {
         </p>
       ),
     },
-    // {
-    //   title: "View advertisement",
-    //   dataIndex: "",
-    //   render: (_: string, record: Advertisement) => (
-    //     <Link
-    //       to={`/product-ads/${record?.user?._id}`}
-    //       className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] text-white hover:!text-white rounded-[6px] border-none"
-    //     >
-    //       Preview
-    //     </Link>
-    //   ),
-    // },
+    {
+      title: "View advertisement",
+      dataIndex: "",
+      render: (_: string, record: Advertisement) => (
+        <Link
+          to={`/product-ads/${record?._id}`}
+          className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] py-2 px-4 text-white hover:!text-white rounded-[6px] border-none"
+        >
+          Preview
+        </Link>
+      ),
+    },
     {
       title: "Actions",
       dataIndex: "Actions",

@@ -29,9 +29,9 @@ function DisapproveReasonModal({
       body: { is_admin_approved: false, ...val },
       routeParams: record._id,
       type: "mount",
-      cbSuccess: () => {
+      cbSuccess: (data) => {
         setData((p: UserType[]) =>
-          p.filter((item) => item._id !== record?._id)
+          p.filter((item) => (item._id === record?._id ? data : item))
         );
         handleCancel();
       },

@@ -69,6 +69,18 @@ export const advertisementsDelete: ApiRoute = {
   auth: true,
 };
 
+export const reportAds: ApiRoute = {
+  url: "/report",
+  method: requestMethods.GET,
+  auth: true,
+};
+
+export const reportAdsDelete: ApiRoute = {
+  url: "/report",
+  method: requestMethods.DELETE,
+  auth: true,
+};
+
 export const bookingRequest: ApiRoute = {
   url: "/booking-request",
   method: requestMethods.GET,

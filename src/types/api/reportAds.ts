@@ -3,33 +3,18 @@ interface Location {
   coordinates: number[];
 }
 
-interface Category {
-  created_at: string;
-  _id: string;
-  name: string;
-  parent: string;
-  has_children: boolean;
-  image_url: string;
-  slug: string;
-  status: boolean;
-  updated_at: string | null;
-  deleted_at: string | null;
-  __v: number;
-  arabic_name: string;
-}
-
 interface User {
-  current_location: Location;
-  stripe_id: string;
-  device_tokens: string[];
   _id: string;
+  current_location: Location;
+  rating: number;
+  stripe_id: string;
+  disapprove_reason: string;
+  reviews: number;
   role: string;
   name: string;
   email: string;
   username: string;
   password: string;
-  rating: number;
-  reviews: number;
   image_url: string;
   license: string;
   mobile_no: string;
@@ -39,32 +24,26 @@ interface User {
   payment_active: boolean;
   email_verified: boolean;
   mobile_no_verified: boolean;
-  verification_code: string | null;
+  verification_code: string;
   reset_password_token: string;
-  latitude: number;
-  longitude: number;
-  address: string;
   slug: string;
   status: boolean;
   created_at: string;
   updated_at: string | null;
   deleted_at: string | null;
   __v: number;
-  id_back: string;
-  id_front: string;
+  device_tokens: string[];
   is_admin_approved: boolean;
 }
 
 interface Media {
-  url: string | undefined;
   file: string;
   thumbnail: string | null;
   type: string;
   _id: string;
 }
 
-export type Advertisement = {
-  advertisement?: string;
+interface Advertisement {
   location: Location;
   _id: string;
   title: string;
@@ -73,19 +52,19 @@ export type Advertisement = {
   price_per_day: number;
   peak_start_time: string;
   peak_end_time: string;
-  peak_price_per_slot: number | null;
-  peak_price_per_day: number | null;
+  peak_price_per_slot: number;
+  peak_price_per_day: number;
   address: string;
   country: string;
   city: string;
-  favorities: string[];
+  favorities: any[];
   latitude: number;
   longitude: number;
   tags: string[];
   description: string;
   ad_status: string;
-  category: Category;
-  user: User;
+  category: string;
+  user: string;
   featured: boolean;
   rating: number;
   reviews: number;
@@ -96,5 +75,17 @@ export type Advertisement = {
   slot_duration: number;
   advance_booking_duration: string;
   slug: string;
+  status: boolean;
   created_at: string;
-};
+  updated_at: string | null;
+  deleted_at: string | null;
+  __v: number;
+}
+
+export interface ReportAds {
+  _id: string;
+  note: string;
+  user: User;
+  advertisement: Advertisement;
+  report_status: string;
+}

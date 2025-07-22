@@ -5,3 +5,4 @@ export * from "./faq";
 export * from "./user";
 export * from "./ads";
 export * from "./dashboard";
+export * from "./reportAds";

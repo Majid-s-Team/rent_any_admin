@@ -10,6 +10,11 @@ type Props = {
 };
 
 function DocumentsModal({ isModalOpen, handleCancel, data, license }: Props) {
+  const licenseUrl = data?.license || "";
+  const cleanedUrl = licenseUrl.replace(/^\[|\]$/g, "");
+
+  console.log(licenseUrl, cleanedUrl);
+
   return (
     <Modal
       open={isModalOpen}
@@ -26,8 +31,8 @@ function DocumentsModal({ isModalOpen, handleCancel, data, license }: Props) {
               License
             </p>
 
-            {data?.license && data.license.endsWith(".pdf") ? (
-              <PDFViewer fileUrl={data.license} />
+            {cleanedUrl && cleanedUrl.endsWith(".pdf") ? (
+              <PDFViewer fileUrl={cleanedUrl} />
             ) : (
               <p className="text-[#171717] text-[20px] h-[200px] flex justify-center items-center red-semibold">
                 No license uploaded

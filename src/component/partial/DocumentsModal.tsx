@@ -1,5 +1,6 @@
 import { Modal } from "antd";
 import { UserType } from "../../types";
+import PDFViewer from "./PDFViewer";
 
 type Props = {
   isModalOpen: boolean;
@@ -15,18 +16,28 @@ function DocumentsModal({ isModalOpen, handleCancel, data, license }: Props) {
       onCancel={handleCancel}
       footer={null}
       title="Documents"
-      // width={350}
+      width={license ? 850 : 500}
       centered
     >
       <div className="grid gap-4">
         {license ? (
           <div>
-            <p className="text-[#171717] text-[14px] red-semibold">License</p>
-            <img
+            <p className="text-[#171717] text-[14px] red-semibold mb-4">
+              License
+            </p>
+
+            {data?.license && data.license.endsWith(".pdf") ? (
+              <PDFViewer fileUrl={data.license} />
+            ) : (
+              <p className="text-[#171717] text-[20px] h-[200px] flex justify-center items-center red-semibold">
+                No license uploaded
+              </p>
+            )}
+            {/* <img
               // className="w-[319px] h-[200px]"
               src={data?.license || "/images/license.png"}
               alt=""
-            />
+            /> */}
           </div>
         ) : (
           <>

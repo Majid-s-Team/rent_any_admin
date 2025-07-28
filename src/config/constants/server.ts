@@ -2,8 +2,8 @@ export default {
   // local
   // baseUrl: "https://rentanyserver-production.up.railway.app/",
   // production
-  baseUrl: "https://rentanyserver-production.up.railway.app/",
-  // baseUrl: "https://api.rentany.ae/",
+  // baseUrl: "https://rentanyserver-production.up.railway.app/",
+  baseUrl: "https://api.rentany.ae/",
   imageUrl: function (url: string): string {
     return this.baseUrl + url;
   },

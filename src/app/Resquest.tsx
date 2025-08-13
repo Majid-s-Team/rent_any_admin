@@ -2,7 +2,7 @@ import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
 import { requestColumns } from "../config";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
-import { updateUser, user } from "../repositories";
+import { updateUser, usersRequest } from "../repositories";
 import { useRequest } from "../hooks/useRequest";
 import { UserType } from "../types";
 import { useState } from "react";
@@ -12,11 +12,11 @@ const Request = () => {
   const [open, setOpen] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState<UserType | null>(null);
   const { data, setData, loading, pagination, onPaginationChange } = useRequest(
-    user.url,
-    user.method,
+    usersRequest.url,
+    usersRequest.method,
     {
       type: "mount",
-      params: { is_admin_approved: false },
+      // params: { is_admin_approved: false },
     }
   );
 

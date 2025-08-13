@@ -15,6 +15,12 @@ export const user: ApiRoute = {
   auth: true,
 };
 
+export const usersRequest: ApiRoute = {
+  url: "/user/requests",
+  method: requestMethods.GET,
+  auth: true,
+};
+
 export const updateUser: ApiRoute = {
   url: "/user",
   method: requestMethods.PATCH,

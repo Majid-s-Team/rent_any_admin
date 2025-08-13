@@ -23,22 +23,6 @@ export const queriesColumns = [
     title: "Description",
     dataIndex: "description",
   },
-  // {
-  //   title: "Status",
-  //   dataIndex: "status",
-  //   render: (text: string) => (
-  //     <p className="text-white text-[14px] py-1 w-[100px] bg-[#00B69B] text-center rounded-[40px]">
-  //       {text}
-  //     </p>
-  //   ),
-  // },
-  // {
-  //   title: "Action",
-  //   dataIndex: "action",
-  //   render: () => (
-  //     <img className="w-[20px] cursor-pointer" src="/icons/dots.png" alt="" />
-  //   ),
-  // },
 ];
 
 export const queriesData = [

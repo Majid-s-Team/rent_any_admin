@@ -53,12 +53,18 @@ export const requestColumns = ({ handleRequest, handleDisapprove }: Props) => {
       render: (_: string, record: UserType) => (
         <div className="flex items-center gap-2">
           <Button
+            disabled={
+              record.is_admin_approved === true && record?.is_admin_approved
+            }
             onClick={() => handleRequest(record?._id as string, true)}
-            className="bg-[#4A7ABC] hover:!bg-[#4A7ABC] text-white hover:!text-white rounded-[6px] border-none"
+            className="!bg-[#4A7ABC] !text-white rounded-[6px] border-none"
           >
             Approve
           </Button>
           <Button
+            disabled={
+              record.is_admin_approved === true && record?.is_admin_approved
+            }
             onClick={() => handleDisapprove(record)}
             className="rounded-[6px]"
           >

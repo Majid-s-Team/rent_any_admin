@@ -29,7 +29,7 @@ export const dashboardcolumns = [
     title: "Status",
     dataIndex: "ad_status",
     render: (text: string) => (
-      <p className="text-white text-[14px] py-1 w-[100px] bg-[#00B69B] text-center rounded-[40px]">
+      <p className="text-white text-[14px] py-1 w-[100px] bg-[#00B69B] text-center rounded-[40px] capitalize">
         {text}
       </p>
     ),

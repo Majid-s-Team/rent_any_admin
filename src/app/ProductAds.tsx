@@ -1,6 +1,5 @@
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
-import { DatePicker } from "antd";
 import { withAuthGuard } from "../component/higherOrder/withAuth";
 import { useRequest } from "../hooks/useRequest";
 import { advertisements, advertisementsDelete } from "../repositories";
@@ -41,11 +40,11 @@ const ProductAds = () => {
         loading={loading || loadingDelete}
         onPaginationChange={onPaginationChange}
         pagination={pagination}
-        input={
-          <>
-            <DatePicker width={200} />
-          </>
-        }
+        // input={
+        //   <>
+        //     <DatePicker width={200} />
+        //   </>
+        // }
       />
     </HomeLayout>
   );

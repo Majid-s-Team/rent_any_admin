@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import HomeLayout from "../component/shared/HomeLayout";
 import TableData from "../component/shared/Table";
-import { Select } from "antd";
 import { userColumns } from "../config";
 import { useRequest } from "../hooks/useRequest";
 import { updateUser, user } from "../repositories";
@@ -73,11 +72,11 @@ function User() {
         loading={loading}
         onPaginationChange={onPaginationChange}
         pagination={pagination}
-        input={
-          <>
-            <Select defaultValue="All" style={{ width: 150 }} />
-          </>
-        }
+        // input={
+        //   <>
+        //     <Select defaultValue="All" style={{ width: 150 }} />
+        //   </>
+        // }
       />
     </HomeLayout>
   );

@@ -29,12 +29,12 @@ export const sidebarLinks = [
     icon: "/icons/categories.png",
     iconactive: "/icons/categories-active.png",
   },
-  // {
-  //   key: "/report-ads",
-  //   label: "Reported Ads",
-  //   icon: "/icons/product.png",
-  //   iconactive: "/icons/product-active.png",
-  // },
+  {
+    key: "/report-ads",
+    label: "Reported Ads",
+    icon: "/icons/product.png",
+    iconactive: "/icons/product-active.png",
+  },
   // {
   //   key: "/list-of-subscribers",
   //   label: "List of Subscribers",

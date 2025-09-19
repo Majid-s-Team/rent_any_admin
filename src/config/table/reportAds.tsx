@@ -15,7 +15,7 @@ export const reportAdsColumns = (handleDelete: (id: string) => void) => {
       title: "Location",
       dataIndex: "address",
       render: (_: string, record: ReportAds) => (
-        <p>{record?.advertisement?.address}</p>
+        <p className="w-[200px] truncate">{record?.advertisement?.address}</p>
       ),
     },
     {
@@ -33,11 +33,7 @@ export const reportAdsColumns = (handleDelete: (id: string) => void) => {
     {
       title: "Note",
       dataIndex: "note",
-      //   render: (text: string) => (
-      //     <p className="text-white text-[14px] py-1 w-[100px] bg-[#00B69B] text-center rounded-[40px] capitalize">
-      //       {text}
-      //     </p>
-      //   ),
+      render: (text: string) => <p className="w-[200px] truncate">{text}</p>,
     },
     {
       title: "Status",

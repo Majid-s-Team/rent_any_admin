@@ -74,7 +74,7 @@ const ReportDetail = () => {
               ${advertisement?.price_per_slot}
             </Descriptions.Item>
             <Descriptions.Item label="Peak / Slot">
-              ${advertisement?.peak_price_per_slot}
+              {advertisement?.peak_price_per_slot || "-"}
             </Descriptions.Item>
             <Descriptions.Item label="Timing">
               {advertisement?.start_time} - {advertisement?.end_time}

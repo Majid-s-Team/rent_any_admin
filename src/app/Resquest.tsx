@@ -11,14 +11,17 @@ import DisapproveReasonModal from "../component/partial/DisapproveReasonModal";
 const Request = () => {
   const [open, setOpen] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState<UserType | null>(null);
-  const { data, setData, loading, pagination, onPaginationChange } = useRequest(
-    usersRequest.url,
-    usersRequest.method,
-    {
-      type: "mount",
-      // params: { is_admin_approved: false },
-    }
-  );
+  const {
+    data,
+    setData,
+    loading,
+    pagination,
+    onPaginationChange,
+    execute: getUser,
+  } = useRequest(usersRequest.url, usersRequest.method, {
+    type: "mount",
+    // params: { is_admin_approved: false },
+  });
 
   const { execute, loading: loadingUpdate } = useRequest(
     updateUser.url,
@@ -32,7 +35,14 @@ const Request = () => {
       routeParams: id,
       type: "mount",
       cbSuccess: () => {
-        setData((p: UserType[]) => p.filter((item) => item._id !== id));
+        // setData((p: UserType[]) =>
+        //   p.filter((item) =>
+        //     item._id === id ? { ...item, is_admin_approved: request } : item
+        //   )
+        // );
+        getUser({
+          type: "mount",
+        });
       },
     });
   };

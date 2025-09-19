@@ -1,4 +1,4 @@
-import { Card, Descriptions, Badge, Image } from "antd";
+import { Card, Descriptions, Image } from "antd";
 import { VideoCameraOutlined, PictureOutlined } from "@ant-design/icons";
 import HomeLayout from "../component/shared/HomeLayout";
 import { useRequest } from "../hooks/useRequest";
@@ -14,7 +14,7 @@ const ReportDetail = () => {
       routeParams: id,
     });
 
-  const { user, advertisement, report_status, note } = data || {};
+  const { user, advertisement, note } = data || {};
 
   return (
     <HomeLayout loading={loading}>
@@ -25,12 +25,12 @@ const ReportDetail = () => {
             size="middle"
             labelStyle={{ fontWeight: 600 }}
           >
-            <Descriptions.Item label="Status">
+            {/* <Descriptions.Item label="Status">
               <Badge
                 status={report_status === "rejected" ? "error" : "success"}
                 text={report_status?.toUpperCase()}
               />
-            </Descriptions.Item>
+            </Descriptions.Item> */}
             <Descriptions.Item label="Note">{note}</Descriptions.Item>
           </Descriptions>
         </Card>

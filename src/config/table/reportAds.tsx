@@ -35,15 +35,15 @@ export const reportAdsColumns = (handleDelete: (id: string) => void) => {
       dataIndex: "note",
       render: (text: string) => <p className="w-[200px] truncate">{text}</p>,
     },
-    {
-      title: "Status",
-      dataIndex: "report_status",
-      render: (text: string) => (
-        <p className="text-white text-[14px] py-1 w-[100px] bg-red-500 text-center rounded-[40px] capitalize">
-          {text}
-        </p>
-      ),
-    },
+    // {
+    //   title: "Status",
+    //   dataIndex: "report_status",
+    //   render: (text: string) => (
+    //     <p className="text-white text-[14px] py-1 w-[100px] bg-red-500 text-center rounded-[40px] capitalize">
+    //       {text}
+    //     </p>
+    //   ),
+    // },
     {
       title: "View advertisement",
       dataIndex: "",
